@@ -66,4 +66,4 @@ echo ">>> Setting ZSH as default shell"
 chsh -s /usr/bin/zsh
 
 echo ">>> INSTALL COMPLETE"
-echo ">>> Log out and back in, OR run: exec zsh"
+echo ">>> Log out and back in, OR Reboot run: exit OR sudo reboot"
