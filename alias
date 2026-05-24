@@ -1,10 +1,10 @@
-⭐ COPY & PASTE — Add all aliases automatically
-
 cat >> ~/.zshrc << 'EOF'
 
 # ============================
 #        ALIASES PACK
 #   (Ubuntu + Kali + Useful)
+#   reload:
+#   source ~/.zshrc
 # ============================
 
 # --- Basic navigation ---
@@ -65,8 +65,3 @@ alias extract='sudo apt install -y unzip unrar p7zip-full && echo "Extracting...
 # ============================
 
 EOF
-
-
-Then reload:
-source ~/.zshrc
-
