@@ -19,6 +19,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias ~='cd ~'
 alias c='clear'
+alias cls='clear'
 
 # --- Listing (Kali-style + Ubuntu-style) ---
 alias l='ls -CF'
@@ -37,16 +38,17 @@ alias cpu='lscpu'
 alias mem='free -h'
 alias disk='df -h'
 alias ports='ss -tulnp'
-alias ipinfo='ip -c a'
+alias ipinfo='ip -br a'
 
 # --- Package management ---
-alias update='sudo apt update && sudo apt upgrade -y'
+alias update='sudo apt update && sudo apt dist-upgrade -y'
 alias install='sudo apt install -y'
 alias remove='sudo apt remove -y'
 alias search='apt search'
 
 # --- Networking ---
-alias pingg='ping google.com'
+alias pingg='ping -c 3 google.com'
+alias ping1='ping -c 3 1.1.1.1'
 alias myip='curl -s ifconfig.me'
 alias flushdns='sudo systemd-resolve --flush-caches'
 
