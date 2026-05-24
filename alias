@@ -5,6 +5,12 @@ cat >> ~/.zshrc << 'EOF'
 #   (Ubuntu + Kali + Useful)
 #   reload:
 #   source ~/.zshrc
+#   curl -s https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/alias | zsh
+#   curl -s https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/alias | bash
+#   Download:
+# curl -o ~/alias.sh https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/alias
+# chmod +x ~/alias.sh
+# ~/alias.sh
 # ============================
 
 # --- Basic navigation ---
