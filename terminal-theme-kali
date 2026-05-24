@@ -1,38 +1,38 @@
 # ================================
 #   KALI ZSH + OH-MY-POSH SETUP
-#   One‑Shot Installer (No sudo prompts)
+#   Optimized One‑Shot Installer
 # ================================
 
-echo ">>> Updating system"
-sudo -S true  # triggers password prompt ONCE
+# Trigger sudo password prompt ONCE at the very beginning
+sudo -v
 
-echo ">>> Installing required packages"
-sudo apt update
+echo ">>> Updating system and installing packages..."
+sudo apt update && sudo apt upgrade -y
 sudo apt install -y zsh git curl wget unzip fzf fonts-firacode ca-certificates
 
-echo ">>> Installing Oh-My-Posh manually (reliable method)"
+echo ">>> Installing Oh-My-Posh..."
 mkdir -p ~/.local/bin
-wget -O ~/.local/bin/oh-my-posh \
-https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64
+wget -q -O ~/.local/bin/oh-my-posh \
+  https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64
 chmod +x ~/.local/bin/oh-my-posh
 
-echo ">>> Creating .zprofile (PATH fix)"
-cat > ~/.zprofile << 'EOF'
-export PATH="$HOME/.local/bin:$PATH"
-EOF
+echo ">>> Cloning ZSH plugins..."
+# Using shallow clones (--depth 1) makes this significantly faster on new VMs
+git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions ~/.zsh-autosuggestions
+git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh-syntax-highlighting
+git clone --depth 1 https://github.com/zsh-users/zsh-history-substring-search ~/.zsh-history-substring-search
 
-echo ">>> Installing ZSH plugins"
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-history-substring-search ~/.zsh-history-substring-search
-
-echo ">>> Downloading Kali Oh-My-Posh theme"
+echo ">>> Downloading Kali Oh-My-Posh theme..."
 mkdir -p ~/.cache/oh-my-posh/themes
-wget -O ~/.cache/oh-my-posh/themes/kali.omp.json \
-https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/kali.omp.json
+wget -q -O ~/.cache/oh-my-posh/themes/kali.omp.json \
+  https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/kali.omp.json
 
-echo ">>> Creating .zshrc"
+echo ">>> Generating .zshrc and environment configs..."
+# We can combine the PATH export directly into .zshrc to keep everything in one file
 cat > ~/.zshrc << 'EOF'
+# --- PATH CONFIG ---
+export PATH="$HOME/.local/bin:$PATH"
+
 # --- HISTORY ---
 export HISTFILE=~/.zsh_history
 export HISTSIZE=50000
@@ -41,7 +41,8 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt SHARE_HISTORY
 
 # --- OH MY POSH (KALI THEME) ---
-eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/kali.omp.json)"
+# Using the absolute path here prevents errors on the very first shell initialization
+eval "$($HOME/.local/bin/oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/kali.omp.json)"
 
 # --- PLUGINS ---
 source ~/.zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -59,11 +60,14 @@ bindkey '^[OA' history-substring-search-up
 bindkey '^[OB' history-substring-search-down
 EOF
 
-echo ">>> Registering ZSH as a valid shell"
-echo /usr/bin/zsh | sudo tee -a /etc/shells >/dev/null
+echo ">>> Ensuring ZSH is registered and setting default shell..."
+# Only add ZSH to /etc/shells if it isn't already listed there
+if ! grep -q "^/usr/bin/zsh$" /etc/shells; then
+    echo "/usr/bin/zsh" | sudo tee -a /etc/shells >/dev/null
+fi
 
-echo ">>> Setting ZSH as default shell"
-chsh -s /usr/bin/zsh
+# Explicitly pass the current user to sudo chsh to avoid any hidden password prompts
+sudo chsh -s /usr/bin/zsh $USER
 
 echo ">>> INSTALL COMPLETE"
-echo ">>> Log out and back in, OR Reboot run: exit OR sudo reboot"
+echo ">>> Simply run: exec zsh"
