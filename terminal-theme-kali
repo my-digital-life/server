@@ -1,37 +1,36 @@
-✅ STEP 1 — Install required packages
+# ================================
+#   KALI ZSH + OH-MY-POSH SETUP
+#   One‑Shot Installer Script
+# ================================
 
-sudo apt install -y curl unzip wget ca-certificates fonts-powerline fonts-firacode zsh fzf git
+echo ">>> Updating system"
+sudo apt update
 
-✅ STEP 2 — Install Oh‑My‑Posh (official installer)
+echo ">>> Installing required packages"
+sudo apt install -y zsh git curl wget unzip fzf fonts-firacode ca-certificates
 
-curl -s https://ohmyposh.dev/install.sh | bash -s
+echo ">>> Installing Oh-My-Posh manually (reliable method)"
+mkdir -p ~/.local/bin
+wget -O ~/.local/bin/oh-my-posh \
+https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64
+chmod +x ~/.local/bin/oh-my-posh
 
-✅ STEP 3 — Download the Kali theme
+echo ">>> Creating .zprofile (PATH fix)"
+cat > ~/.zprofile << 'EOF'
+export PATH="$HOME/.local/bin:$PATH"
+EOF
 
-mkdir -p ~/.cache/oh-my-posh/themes
-wget -O ~/.cache/oh-my-posh/themes/kali.omp.json \
-https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/kali.omp.json
-
-✅ STEP 4 — Install ZSH plugins
-
+echo ">>> Installing ZSH plugins"
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-history-substring-search ~/.zsh-history-substring-search
 
-✅ STEP 5 — FIX THE PATH ISSUE (IMPORTANT)
-This ensures Oh‑My‑Posh loads automatically on every reboot.
+echo ">>> Downloading Kali Oh-My-Posh theme"
+mkdir -p ~/.cache/oh-my-posh/themes
+wget -O ~/.cache/oh-my-posh/themes/kali.omp.json \
+https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/kali.omp.json
 
-Create .zprofile:
-
-cat > ~/.zprofile << 'EOF'
-# Ensure local bin is available before ZSH loads anything
-export PATH="$HOME/.local/bin:$PATH"
-EOF
-
-
-✅ STEP 6 — Create a clean .zshrc
-
-
+echo ">>> Creating .zshrc"
 cat > ~/.zshrc << 'EOF'
 # --- HISTORY ---
 export HISTFILE=~/.zsh_history
@@ -59,10 +58,11 @@ bindkey '^[OA' history-substring-search-up
 bindkey '^[OB' history-substring-search-down
 EOF
 
-✅ STEP 7 — Make ZSH your default shell
+echo ">>> Registering ZSH as a valid shell"
+echo /usr/bin/zsh | sudo tee -a /etc/shells
 
+echo ">>> Setting ZSH as default shell"
 chsh -s /usr/bin/zsh
 
-Reload:
-
-exec zsh
+echo ">>> INSTALL COMPLETE"
+echo ">>> Log out ( exit ) and back in, OR run: ( sudo reboot )"
