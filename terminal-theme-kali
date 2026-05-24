@@ -1,12 +1,13 @@
 # ================================
 #   KALI ZSH + OH-MY-POSH SETUP
-#   One‑Shot Installer Script
+#   One‑Shot Installer (No sudo prompts)
 # ================================
 
 echo ">>> Updating system"
-sudo apt update
+sudo -S true  # triggers password prompt ONCE
 
 echo ">>> Installing required packages"
+sudo apt update
 sudo apt install -y zsh git curl wget unzip fzf fonts-firacode ca-certificates
 
 echo ">>> Installing Oh-My-Posh manually (reliable method)"
@@ -59,10 +60,10 @@ bindkey '^[OB' history-substring-search-down
 EOF
 
 echo ">>> Registering ZSH as a valid shell"
-echo /usr/bin/zsh | sudo tee -a /etc/shells
+echo /usr/bin/zsh | sudo tee -a /etc/shells >/dev/null
 
 echo ">>> Setting ZSH as default shell"
 chsh -s /usr/bin/zsh
 
 echo ">>> INSTALL COMPLETE"
-echo ">>> Log out ( exit ) and back in, OR run: ( sudo reboot )"
+echo ">>> Log out and back in, OR run: exec zsh"
