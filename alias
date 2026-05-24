@@ -1,0 +1,72 @@
+⭐ COPY & PASTE — Add all aliases automatically
+
+cat >> ~/.zshrc << 'EOF'
+
+# ============================
+#        ALIASES PACK
+#   (Ubuntu + Kali + Useful)
+# ============================
+
+# --- Basic navigation ---
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ~='cd ~'
+alias c='clear'
+
+# --- Listing (Kali-style + Ubuntu-style) ---
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -alF --color=auto'
+alias lll='ls -lah --color=auto'
+alias lt='ls -ltrh --color=auto'
+
+# --- Safer file operations ---
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+
+# --- System info ---
+alias cpu='lscpu'
+alias mem='free -h'
+alias disk='df -h'
+alias ports='ss -tulnp'
+alias ipinfo='ip -c a'
+
+# --- Package management ---
+alias update='sudo apt update && sudo apt upgrade -y'
+alias install='sudo apt install -y'
+alias remove='sudo apt remove -y'
+alias search='apt search'
+
+# --- Networking ---
+alias pingg='ping google.com'
+alias myip='curl -s ifconfig.me'
+alias flushdns='sudo systemd-resolve --flush-caches'
+
+# --- Git shortcuts ---
+alias gs='git status'
+alias ga='git add .'
+alias gc='git commit -m'
+alias gp='git push'
+alias gl='git log --oneline --graph --decorate'
+
+# --- FZF helpers ---
+alias fh='history | fzf'
+alias ff='fzf --preview "bat --style=numbers --color=always {}"'
+
+# --- Kali-style convenience ---
+alias path='echo $PATH'
+alias please='sudo $(fc -ln -1)'
+alias extract='sudo apt install -y unzip unrar p7zip-full && echo "Extracting..."'
+
+# ============================
+#      END OF ALIASES
+# ============================
+
+EOF
+
+
+Then reload:
+source ~/.zshrc
+
