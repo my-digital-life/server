@@ -8,7 +8,7 @@ Setting Kali Linux Theme on Ubuntu
 - ubuntu-24.04.4-live-server-amd64.iso  
 - ubuntu-24.04.3-live-server-amd64.iso  (VM)
 
-## Tested on Kubuntu
+## Tested on Kubuntu Desktop
 
 - kubuntu-24.04.4-desktop-amd64.iso  (VM)
 
