@@ -16,7 +16,7 @@ Setting Kali Linux Theme on Ubuntu
 
 # 🧹 Uninstall
 
-If you want to completely remove the Kali‑style ZSH environment installed by this script, Copy paste remove file
+If you want to completely remove the Kali‑style ZSH environment installed by this script, Copy paste remove file into you terminal
 
 This will remove:
 
