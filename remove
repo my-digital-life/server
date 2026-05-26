@@ -1,0 +1,17 @@
+echo ">>> Removing Oh-My-Posh..."
+rm -f ~/.local/bin/oh-my-posh
+rm -rf ~/.cache/oh-my-posh
+
+echo ">>> Removing ZSH plugins..."
+rm -rf ~/.zsh-autosuggestions
+rm -rf ~/.zsh-syntax-highlighting
+rm -rf ~/.zsh-history-substring-search
+
+echo ">>> Removing generated .zshrc..."
+rm -f ~/.zshrc
+
+echo ">>> Switching default shell back to Bash..."
+sudo chsh -s /bin/bash $USER
+
+echo ">>> Uninstall complete"
+echo ">>> Log out and back in, or run: exec bash"
