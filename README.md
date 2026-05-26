@@ -1,5 +1,6 @@
 # Server  
-Setting Kali Linux Theme on Ubuntu
+Setting Kali Linux Theme on Ubuntu -- terminal-theme-kali  
+Install SSH -- ssh.sh
 
 ---
 
