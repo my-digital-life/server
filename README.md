@@ -32,7 +32,17 @@ It does **NOT** remove system packages like `zsh`, `fzf`, or fonts — those are
 
 ---
 
-## 📝 Notes
+## Notes
 
 This uninstall does **not** delete your ZSH history file (`~/.zsh_history`).  
 If you want to remove it too:
+
+```rm -f ~/.zsh_history
+
+If you manually added additional plugins or themes, remove them separately.
+
+If you want to remove ZSH entirely:
+
+```sudo apt remove --purge -y zsh
+
+
