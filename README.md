@@ -1,6 +1,11 @@
 # server
-setting up a few services on Ubuntu 24.04
+setting Kali linux Theme on Ubuntu
+
+
+
+Tested on Ubuntu Server
 ubuntu-24.04.4-live-server-amd64.iso
+ubuntu-24.04.3-live-server-amd64.iso  # VM
 
-
-Also tested on ubuntu-24.04.3-live-server-amd64.iso
+Tested on Kubuntu
+kubuntu-24.04.4-desktop-amd64.iso  # VM
