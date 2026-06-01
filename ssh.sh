@@ -10,7 +10,7 @@ sudo apt update
 # -------------------------------
 # Upgrade all packages to latest versions
 # -------------------------------
-sudo apt -y dist-upgrade
+sudo apt -y full-upgrade
 
 # -------------------------------
 # Install SSH and OpenSSH server
