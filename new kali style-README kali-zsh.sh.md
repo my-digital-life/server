@@ -1,4 +1,6 @@
-# Kali-Style ZSH Installer for Ubuntu 24.04
+# Kali-Style ZSH Installer for Ubuntu 24.04  
+
+kali-zsh.sh
 
 A one-shot installer that transforms a fresh Ubuntu 24.04 installation into a Kali-inspired terminal environment using ZSH and Oh My Posh.
 
