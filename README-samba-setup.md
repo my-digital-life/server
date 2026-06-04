@@ -23,7 +23,7 @@ It performs the following tasks:
 
 ## Shares Created
 
-## Note 
+Note: 
 Connection Requirements
 
 Windows requires password-protected shares to connect. Since Linux does not enforce this restriction, I have implemented an option for Linux users to connect without a password.
