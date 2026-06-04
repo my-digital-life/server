@@ -4,6 +4,11 @@ A collection of Linux server setup, customization, networking, SSH, Samba, and s
 
 This repository contains scripts that I use to quickly configure new systems, automate repetitive tasks, and create a consistent Linux environment across servers, desktops, virtual machines, and lab environments.
 
+# these commands only work if you use your thumbs to type them in  
+# use at your own risk !!!!  
+# backup your router first !!!!  
+# Cross your fingers  
+
 ---
 
 ## Repository
