@@ -8,7 +8,6 @@ sed -i '/# BEGIN KALI ALIASES/,/# END KALI ALIASES/d' ~/.zshrc
 cat >> ~/.zshrc << 'EOF'
 
 # BEGIN KALI ALIASES
-
 # ==========================================
 # KALI-STYLE ALIASES
 # ==========================================
@@ -85,54 +84,34 @@ extract() {
     if [ -f "$1" ]; then
         case "$1" in
             *.tar.bz2) tar xjf "$1" ;;
-            *.tar.gz)  tar xzf "$1" ;;
-            *.bz2)     bunzip2 "$1" ;;
-            *.rar)     unrar x "$1" ;;
-            *.gz)      gunzip "$1" ;;
-            *.tar)     tar xf "$1" ;;
-            *.tbz2)    tar xjf "$1" ;;
-            *.tgz)     tar xzf "$1" ;;
-            *.zip)     unzip "$1" ;;
-            *.7z)      7z x "$1" ;;
-            *)         echo "Cannot extract '$1'" ;;
+            *.tar.gz) tar xzf "$1" ;;
+            *.bz2) bunzip2 "$1" ;;
+            *.rar) unrar x "$1" ;;
+            *.gz) gunzip "$1" ;;
+            *.tar) tar xf "$1" ;;
+            *.tbz2) tar xjf "$1" ;;
+            *.tgz) tar xzf "$1" ;;
+            *.zip) unzip "$1" ;;
+            *.7z) 7z x "$1" ;;
+            *) echo "Cannot extract '$1'" ;;
         esac
     else
         echo "'$1' is not a valid file"
     fi
 }
-
 # END KALI ALIASES
-
 EOF
 
-# Locate ZSH
-ZSH_PATH="$(command -v zsh)"
+# Reload configuration for the current session
+source ~/.zshrc
 
 echo
 echo "=========================================="
-echo "ALIASES INSTALLED SUCCESSFULLY"
+echo "INSTALLATION COMPLETE"
 echo "=========================================="
 echo
-echo "Useful commands:"
-echo "  update"
-echo "  fullupdate"
-echo "  cleanup"
-echo "  install nmap"
-echo "  search docker"
-echo "  mkcd projects"
-echo "  extract archive.zip"
-echo "  ports"
-echo "  myip"
-echo "  zshconfig"
-echo "  reload"
-echo
+echo "Launching Kali-style ZSH..."
+sleep 2
 
-if [ -n "$ZSH_PATH" ]; then
-    echo "Launching updated ZSH environment..."
-    sleep 2
-    exec "$ZSH_PATH"
-else
-    echo "WARNING: ZSH not found."
-    echo "Open a new terminal or run:"
-    echo "source ~/.zshrc"
-fi
+# Replace the current process with a new zsh session
+exec zsh
