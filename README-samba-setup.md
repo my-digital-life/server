@@ -46,6 +46,12 @@ Check if it worked:
 ll /mnt/media/stuff
 ```
 
+## Connection Requirements
+
+Windows requires password-protected shares to connect. Since Linux does not enforce this restriction, I have implemented an option for Linux users to connect without a password.
+
+Note: For Windows connections, the default username and password is "user".
+
 ## Required Changes
 
 Before running the script, review and change any passwords marked with asterisks (`***`).
