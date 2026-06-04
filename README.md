@@ -2,6 +2,8 @@
 
 A collection of Linux server setup, customization, networking, SSH, Samba, and shell automation scripts for Ubuntu, Debian, Kali Linux, and similar distributions.
 
+This repository contains scripts that I use to quickly configure new systems, automate repetitive tasks, and create a consistent Linux environment across servers, desktops, virtual machines, and lab environments.
+
 ---
 
 ## Repository
@@ -10,169 +12,129 @@ https://github.com/my-digital-life/server
 
 ---
 
-## Available Scripts
+## Samba Server Setup
 
-### Samba Server Setup
+**Script:** [samba-setup.sh](https://github.com/my-digital-life/server/blob/main/samba-setup.sh)
 
-Automatically installs and configures Samba for Windows and Linux file sharing.
+**Documentation:** [README-samba-setup.md](https://github.com/my-digital-life/server/blob/main/README-samba-setup.md)
 
-**Script:** [`samba-setup.sh`](https://github.com/my-digital-life/server/blob/main/samba-setup.sh)
+This script installs and configures a Samba file server for sharing files between Linux and Windows systems. It can create shares, configure Samba, create Samba users, mount remote Windows shares, and enable services automatically. It is designed for home labs, media servers, virtual machines, and small network environments.
 
-**Documentation:** [`README-samba-setup.md`](https://github.com/my-digital-life/server/blob/main/README-samba-setup.md)
+### Download and Run
 
-Features:
-
-* Installs Samba and required packages
-* Creates shared folders
-* Creates Samba users
-* Configures Samba shares
-* Mounts Windows shares
-* Enables automatic startup
+```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/samba-setup.sh
+chmod +x samba-setup.sh
+sudo ./samba-setup.sh
+```
 
 ---
 
-### Kali-Style ZSH and Oh My Posh Setup
+## Kali-Style ZSH and Oh My Posh Setup
 
-Installs and configures a Kali Linux style terminal environment with ZSH and Oh My Posh.
+**Script:** [kali-zsh.sh](https://github.com/my-digital-life/server/blob/main/kali-zsh.sh)
 
-**Script:** [`kali-zsh.sh`](https://github.com/my-digital-life/server/blob/main/kali-zsh.sh)
+**Documentation:** [README-kali-zsh.md](https://github.com/my-digital-life/server/blob/main/README-kali-zsh.md)
 
-**Documentation:** [`README-kali-zsh.md`](https://github.com/my-digital-life/server/blob/main/README-kali-zsh.md)
+This script transforms a standard Linux terminal into a Kali Linux-inspired environment using ZSH and Oh My Posh. It installs required packages, configures themes, improves shell usability, and provides a cleaner and more informative command-line experience.
 
-Features:
+### Download and Run
 
-* Installs ZSH
-* Installs Oh My Posh
-* Configures shell themes
-* Creates a Kali-style terminal experience
-
----
-
-### Alias Installer
-
-Installs a collection of useful aliases and shell functions for Linux administration.
-
-**Script:** [`add-aliases.sh`](https://github.com/my-digital-life/server/blob/main/add-aliases.sh)
-
-**Documentation:** [`README-add-aliases.md`](https://github.com/my-digital-life/server/blob/main/README-add-aliases.md)
-
-Features:
-
-* Package management shortcuts
-* Networking shortcuts
-* System administration helpers
-* ZSH-friendly functions
+```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/kali-zsh.sh
+chmod +x kali-zsh.sh
+./kali-zsh.sh
+```
 
 ---
 
-### SSH Configuration Script
+## Alias Installer
 
-Utility script for SSH setup and configuration.
+**Script:** [add-aliases.sh](https://github.com/my-digital-life/server/blob/main/add-aliases.sh)
 
-**Script:** [`ssh.sh`](https://github.com/my-digital-life/server/blob/main/ssh.sh)
+**Documentation:** [README-add-aliases.md](https://github.com/my-digital-life/server/blob/main/README-add-aliases.md)
 
-**Documentation:** [`README-ssh-sh.md`](https://github.com/my-digital-life/server/blob/main/README-ssh-sh.md)
+This script installs a collection of useful aliases and shell functions commonly used for system administration, package management, networking, troubleshooting, and day-to-day Linux usage. It is intended to save time and reduce repetitive typing.
 
-Features:
+### Download and Run
 
-* SSH configuration automation
-* Common SSH management tasks
-
----
-
-### Terminal Theme Configuration
-
-Additional terminal theme configuration files.
-
-**File:** [`terminal-theme-kali`](https://github.com/my-digital-life/server/blob/main/terminal-theme-kali)
-
-Features:
-
-* Terminal appearance customization
-* Kali-style visual configuration
+```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/add-aliases.sh
+chmod +x add-aliases.sh
+./add-aliases.sh
+```
 
 ---
 
-### Alias Collection
+## SSH Configuration Script
 
-Additional alias definitions used by the setup scripts.
+**Script:** [ssh.sh](https://github.com/my-digital-life/server/blob/main/ssh.sh)
 
-**File:** [`alias`](https://github.com/my-digital-life/server/blob/main/alias)
+**Documentation:** [README-ssh-sh.md](https://github.com/my-digital-life/server/blob/main/README-ssh-sh.md)
 
-Features:
+This script automates common SSH server configuration tasks and helps prepare a system for secure remote administration. It is intended to simplify SSH setup and reduce the amount of manual configuration required after a fresh Linux installation.
 
-* Command shortcuts
-* Administrative helper commands
+### Download and Run
 
----
-
-### Script Runner
-
-Helper script used for executing setup tasks.
-
-**File:** [`bash`](https://github.com/my-digital-life/server/blob/main/bash)
-
-Features:
-
-* Script execution helpers
-* Setup automation support
+```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/ssh.sh
+chmod +x ssh.sh
+sudo ./ssh.sh
+```
 
 ---
 
-### Removal Script
+## Supporting Files
 
-Removes ZSH and Oh My Posh configurations installed by the setup scripts.
+These files are used by the setup scripts and may also be useful on their own.
 
-**File:** [`remove`](https://github.com/my-digital-life/server/blob/main/remove)
+### alias
 
-Features:
+Contains additional shell aliases and helper commands used by the repository.
 
-* Uninstalls Oh My Posh
-* Removes custom ZSH configuration
-* Restores a cleaner shell environment
+### terminal-theme-kali
+
+Provides terminal theme settings used by the Kali-style ZSH configuration.
+
+### bash
+
+Helper script used for setup and execution tasks.
+
+### remove
+
+Removal script used to uninstall or clean up ZSH and Oh My Posh configurations.
 
 ---
 
 ## Documentation
 
-| Documentation                                                                                      | Description                         |
-| -------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| [README-samba-setup.md](https://github.com/my-digital-life/server/blob/main/README-samba-setup.md) | Samba server setup instructions     |
-| [README-kali-zsh.md](https://github.com/my-digital-life/server/blob/main/README-kali-zsh.md)       | Kali-style ZSH and Oh My Posh setup |
-| [README-add-aliases.md](https://github.com/my-digital-life/server/blob/main/README-add-aliases.md) | Alias installation and management   |
-| [README-ssh-sh.md](https://github.com/my-digital-life/server/blob/main/README-ssh-sh.md)           | SSH setup and configuration         |
+| File                                                                                               | Description                                 |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| [README-samba-setup.md](https://github.com/my-digital-life/server/blob/main/README-samba-setup.md) | Samba server installation and configuration |
+| [README-kali-zsh.md](https://github.com/my-digital-life/server/blob/main/README-kali-zsh.md)       | Kali-style ZSH and Oh My Posh setup         |
+| [README-add-aliases.md](https://github.com/my-digital-life/server/blob/main/README-add-aliases.md) | Alias installation and management           |
+| [README-ssh-sh.md](https://github.com/my-digital-life/server/blob/main/README-ssh-sh.md)           | SSH setup and configuration                 |
 
 ---
 
-## Quick Start
+## Quick Reference
 
-Clone the repository:
-
-```bash
-git clone https://github.com/my-digital-life/server.git
-cd server
-```
-
-Make a script executable:
-
-```bash
-chmod +x script-name.sh
-```
-
-Run the script:
-
-```bash
-sudo ./script-name.sh
-```
+| Script         | Purpose                             |
+| -------------- | ----------------------------------- |
+| samba-setup.sh | Configure Samba file sharing        |
+| kali-zsh.sh    | Install Kali-style ZSH environment  |
+| add-aliases.sh | Install aliases and shell functions |
+| ssh.sh         | Configure SSH services              |
 
 ---
 
 ## Notes
 
-* Review all scripts before running them.
-* Some scripts require root or sudo privileges.
-* Test in a virtual machine before deploying to production systems.
-* Update usernames, passwords, IP addresses, hostnames, and other environment-specific settings before use.
+* Review scripts before running them.
+* Some scripts require sudo or root privileges.
+* Test scripts in a virtual machine before deploying to production systems.
+* Update usernames, passwords, IP addresses, hostnames, and environment-specific settings before use.
+* Documentation for each script is available in the corresponding README file.
 
 ---
 
