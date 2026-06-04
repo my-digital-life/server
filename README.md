@@ -18,15 +18,32 @@ https://github.com/my-digital-life/server
 
 **Documentation:** [README-samba-setup.md](https://github.com/my-digital-life/server/blob/main/README-samba-setup.md)
 
-This script installs and configures a Samba file server for sharing files between Linux and Windows systems. It can create shares, configure Samba, create Samba users, mount remote Windows shares, and enable services automatically. It is designed for home labs, media servers, virtual machines, and small network environments.
+This script installs and configures a Samba file server for sharing files between Linux and Windows systems. It can create shares, configure Samba, create Samba users, mount remote Windows shares, and enable services automatically.
 
-### Download and Run
+The script contains example usernames, passwords, IP addresses, and share information. Before running the script, review and edit these values to match your environment. Failure to change the default credentials may result in authentication failures or security issues.
+
+### Download, Edit, and Run
 
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/samba-setup.sh
 chmod +x samba-setup.sh
+nano samba-setup.sh
 sudo ./samba-setup.sh
 ```
+
+### Important
+
+Before running the script, verify and update:
+
+* Samba username and password
+* Windows username and password
+* Windows domain or workgroup
+* Windows share path
+* IP addresses
+* Shared folder names
+
+Refer to `README-samba-setup.md` for additional details and configuration information.
+
 
 ---
 
