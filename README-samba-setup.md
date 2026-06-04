@@ -63,6 +63,21 @@ Also verify the following values match your environment:
 
 ## Usage
 
+Download the script edit with nano and run it:
+
+```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/samba-setup.sh
+chmod +x samba-setup.sh
+nano samba-setup.sh
+sudo ./samba-setup.sh
+```
+
+Edit the script:
+
+```bash
+nano samba-setup.sh
+```
+
 Make the script executable:
 
 ```bash
