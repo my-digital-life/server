@@ -28,7 +28,7 @@ smbpasswd -e user
 echo "=== Creating Windows credentials ==="
 
 cat >/etc/samba/stuff.creds <<EOF
-username=Scott
+username=****
 password=****
 domain=TOKEN
 EOF
