@@ -40,6 +40,12 @@ to:
 
 `/mnt/media/stuff`
 
+Check if it worked:
+
+```bash
+ll /mnt/media/stuff
+```
+
 ## Required Changes
 
 Before running the script, review and change any passwords marked with asterisks (`***`).
