@@ -1,7 +1,16 @@
-# Server  
-Setting Kali Linux Theme on Ubuntu -- terminal-theme-kali  
+# SSH Server  
 
-Install SSH -- ssh.sh
+This script automates common SSH server configuration tasks and helps prepare a system for secure remote administration. It is intended to simplify SSH setup and reduce the amount of manual configuration required after a fresh Linux installation.
+
+
+### Download and Run
+
+```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/ssh.sh
+chmod +x ssh.sh
+sudo ./ssh.sh
+```
+
 
 ---
 
@@ -16,39 +25,5 @@ Install SSH -- ssh.sh
 - kubuntu-24.04.4-desktop-amd64.iso  (VM)
 
 ---
-
-# 🧹 Uninstall
-
-If you want to completely remove the Kali‑style ZSH environment installed by this script, Copy paste remove file into you terminal
-
-This will remove:
-
-- Oh‑My‑Posh binary  
-- Oh‑My‑Posh theme  
-- ZSH plugins  
-- Generated `.zshrc`  
-- FZF ZSH bindings (only the sourced ones)  
-- ZSH as your default shell (switches back to Bash)
-
-It does **NOT** remove system packages like `zsh`, `fzf`, or fonts — those are safe to keep and used by many tools.
-
----
-
-## Notes
-
-This uninstall does **not** delete your ZSH history file (`~/.zsh_history`).  
-If you want to remove it too:
-
-```
-rm -f ~/.zsh_history
-```
-
-If you manually added additional plugins or themes, remove them separately.
-
-If you want to remove ZSH entirely:
-
-```
-sudo apt remove --purge -y zsh
-```
 
 
