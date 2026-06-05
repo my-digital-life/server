@@ -40,6 +40,7 @@ alias search='apt search'
 alias ports='ss -tulpen'
 alias myip='curl -s ifconfig.me'
 alias localip='ip addr show'
+alias pingf='ping -c 3'
 
 # Disk Usage
 alias df='df -h'
