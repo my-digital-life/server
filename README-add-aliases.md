@@ -1,7 +1,14 @@
 # Kali-Style ZSH Aliases  
-add-aliases.sh  
 
-A collection of aliases and shell functions designed for Ubuntu 24.04 systems running a Kali-style ZSH environment.
+This script installs a collection of useful aliases and shell functions commonly used for system administration, package management, networking, troubleshooting, and day-to-day Linux usage. It is intended to save time and reduce repetitive typing.
+
+### Download and Run
+
+```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/add-aliases.sh
+chmod +x add-aliases.sh
+./add-aliases.sh
+```
 
 ## Features
 
