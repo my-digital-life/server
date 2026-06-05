@@ -25,6 +25,15 @@ A one-shot installer that transforms a fresh Ubuntu 24.04 installation into a Ka
 
 ## Installation
 
+### Download and Run
+
+```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/kali-zsh.sh
+chmod +x kali-zsh.sh
+./kali-zsh.sh
+```
+
+
 Make the script executable:
 
 ```bash
