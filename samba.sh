@@ -2,11 +2,9 @@
 
 set -e
 
-echo "=== Updating package lists ==="
-apt update -qq
-
 echo "=== Installing packages ==="
-DEBIAN_FRONTEND=noninteractive apt install -y -qq samba samba-common-bin acl
+apt update -qq
+apt install -y -qq samba samba-common-bin acl
 
 echo "=== Creating directories ==="
 mkdir -p /mnt/media/test
@@ -16,31 +14,36 @@ echo "=== Creating Samba user ==="
 
 if ! id user >/dev/null 2>&1; then
 useradd -m -s /bin/bash user
-echo "user:user" | chpasswd
+echo "user" | chpasswd
 fi
 
 (echo user; echo user) | smbpasswd -a -s user >/dev/null 2>&1 || true
-smbpasswd -e user >/dev/null 2>&1
+smbpasswd -e user
 
-echo "=== Setting permissions ==="
+echo "=== Setting ownership and permissions ==="
 
-chown user:user /mnt/media/test
-chown user:user /mnt/media/share
+chown -R user /mnt/media/test
+chown -R user /mnt/media/share
 
-chmod 777 /mnt/media/test
-chmod 777 /mnt/media/share
+chmod -R 777 /mnt/media/test
+chmod -R 777 /mnt/media/share
 
-# Default ACLs for future files
+# Existing files and directories
 
-setfacl -d -m u::rwx,g::rwx,o::rwx /mnt/media/test
-setfacl -d -m u::rwx,g::rwx,o::rwx /mnt/media/share
+setfacl -R -m u::rwx,g::rwx,o::rwx /mnt/media/test
+setfacl -R -m u::rwx,g::rwx,o::rwx /mnt/media/share
+
+# Future files and directories
+
+setfacl -R -d -m u::rwx,g::rwx,o::rwx /mnt/media/test
+setfacl -R -d -m u::rwx,g::rwx,o::rwx /mnt/media/share
 
 echo "=== Backing up smb.conf ==="
 cp /etc/samba/smb.conf /etc/samba/smb.conf.bak.$(date +%F-%H%M%S)
 
 echo "=== Writing Samba configuration ==="
 
-cat > /etc/samba/smb.conf <<'EOF'
+cat > /etc/samba/smb.conf << 'EOF'
 [global]
 workgroup = WORKGROUP
 server string = Kali
@@ -76,10 +79,8 @@ EOF
 echo "=== Testing Samba configuration ==="
 testparm -s >/dev/null
 
-echo "=== Enabling Samba ==="
-systemctl enable smbd >/dev/null 2>&1
-
 echo "=== Restarting Samba ==="
+systemctl enable smbd
 systemctl restart smbd
 
 IP=$(hostname -I | awk '{print $1}')
