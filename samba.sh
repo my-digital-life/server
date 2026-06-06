@@ -4,39 +4,24 @@ set -e
 
 echo "=== Installing packages ==="
 apt update -qq
-apt install -y -qq samba samba-common-bin acl
+apt install -y -qq samba samba-common-bin
 
 echo "=== Creating directories ==="
 mkdir -p /mnt/media/test
 mkdir -p /mnt/media/share
 
+chmod 777 /mnt/media/test
+chmod 777 /mnt/media/share
+
 echo "=== Creating Samba user ==="
 
 if ! id user >/dev/null 2>&1; then
-useradd -m -s /bin/bash user
-echo "user" | chpasswd
+    useradd -m -s /bin/bash user
+    echo "user:user" | chpasswd
 fi
 
-(echo user; echo user) | smbpasswd -a -s user >/dev/null 2>&1 || true
+(echo user; echo user) | smbpasswd -a -s user
 smbpasswd -e user
-
-echo "=== Setting ownership and permissions ==="
-
-chown -R user /mnt/media/test
-chown -R user /mnt/media/share
-
-chmod -R 777 /mnt/media/test
-chmod -R 777 /mnt/media/share
-
-# Existing files and directories
-
-setfacl -R -m u::rwx,g::rwx,o::rwx /mnt/media/test
-setfacl -R -m u::rwx,g::rwx,o::rwx /mnt/media/share
-
-# Future files and directories
-
-setfacl -R -d -m u::rwx,g::rwx,o::rwx /mnt/media/test
-setfacl -R -d -m u::rwx,g::rwx,o::rwx /mnt/media/share
 
 echo "=== Backing up smb.conf ==="
 cp /etc/samba/smb.conf /etc/samba/smb.conf.bak.$(date +%F-%H%M%S)
@@ -57,9 +42,6 @@ browseable = yes
 writable = yes
 guest ok = yes
 read only = no
-force user = user
-create mask = 0777
-directory mask = 0777
 force create mode = 0777
 force directory mode = 0777
 
@@ -69,23 +51,20 @@ browseable = yes
 writable = yes
 guest ok = yes
 read only = no
-force user = user
-create mask = 0777
-directory mask = 0777
 force create mode = 0777
 force directory mode = 0777
 EOF
 
 echo "=== Testing Samba configuration ==="
-testparm -s >/dev/null
+testparm -s > /dev/null
 
-echo "=== Restarting Samba ==="
+echo "=== Restarting services ==="
 systemctl enable smbd
 systemctl restart smbd
 
 IP=$(hostname -I | awk '{print $1}')
 
-echo
+printf '\n\n'
 echo "======================================"
 echo "Setup Complete"
 echo
@@ -101,17 +80,10 @@ printf '  \\\\%s\\share\n' "$IP"
 echo
 
 echo "Samba User:"
-echo "Needed For Windows 11"
 echo "  user / user"
 echo
 
 echo "To view network interfaces:"
 echo "  ip -br a | grep UP"
-echo
-
-echo "To view share contents:"
-echo "  ls -lah /mnt/media/share"
-echo "  ls -lah /mnt/media/test"
-echo
 
 echo "======================================"
