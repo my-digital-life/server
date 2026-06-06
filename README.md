@@ -17,7 +17,7 @@ https://github.com/my-digital-life/server
 
 ---
 
-## Samba Server Setup
+## Samba Server + Windows share mount Setup
 
 **Script:** [samba-windows-share-setup.sh](https://github.com/my-digital-life/server/blob/main/samba-windows-share-setup.sh)
 
