@@ -49,6 +49,64 @@ Before running the script, verify and update:
 
 Refer to `README-samba-setup.md` for additional details and configuration information.
 
+---
+
+# Samba Share Setup Script
+
+This script installs and configures a basic Samba file server on Debian, Ubuntu, or Kali Linux.
+
+## What It Does
+
+* Installs Samba packages
+* Creates two shared folders:
+
+  * `/mnt/media/test`
+  * `/mnt/media/share`
+* Sets both folders to world-writable (`777`)
+* Creates a local user:
+
+  * Username: `user`
+  * Password: `user`
+* Creates and enables a matching Samba user
+* Backs up the existing Samba configuration
+* Writes a new Samba configuration with two shares:
+
+  * `test`
+  * `share`
+* Enables and restarts the Samba service
+
+## Usage
+
+```bash
+chmod +x samba.sh
+sudo ./samba.sh
+```
+
+## Accessing the Shares
+
+After the script completes, access the shares from Windows using:
+
+```text
+\\SERVER_IP\test
+\\SERVER_IP\share
+```
+
+Replace `SERVER_IP` with the IP address displayed by the script.
+
+## Samba Credentials
+
+```text
+Username: user
+Password: user
+```
+
+## Notes
+
+* The existing `/etc/samba/smb.conf` file is backed up before any changes are made.
+* Guest access is enabled.
+* Files and directories created through these shares use `777` permissions.
+* Linux clients can typically connect to these shares without a password.
+* Windows 11 may require authentication even when guest access is enabled.
 
 ---
 
