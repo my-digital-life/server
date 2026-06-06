@@ -19,7 +19,7 @@ https://github.com/my-digital-life/server
 
 ## Samba Server Setup
 
-**Script:** [samba-setup.sh](https://github.com/my-digital-life/server/blob/main/samba-windows-share-setup.sh)
+**Script:** [samba-windows-share-setup.sh](https://github.com/my-digital-life/server/blob/main/samba-windows-share-setup.sh)
 
 **Documentation:** [README-samba-setup.md](https://github.com/my-digital-life/server/blob/main/README-samba-setup.md)
 
