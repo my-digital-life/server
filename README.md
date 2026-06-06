@@ -53,7 +53,7 @@ Refer to `README-samba-setup.md` for additional details and configuration inform
 
 # Samba Share Setup Script
 
-This script installs and configures a basic Samba file server on Debian, Ubuntu, or Kali Linux.
+This script installs and configures a basic Samba file server on Debian, Ubuntu, and Kali Linux.
 
 ## What It Does
 
@@ -69,22 +69,25 @@ This script installs and configures a basic Samba file server on Debian, Ubuntu,
   * Password: `user`
 * Creates and enables a matching Samba user
 * Backs up the existing Samba configuration
-* Writes a new Samba configuration with two shares:
+* Creates two Samba shares:
 
   * `test`
   * `share`
 * Enables and restarts the Samba service
 
-## Usage
+## Installation
+
+Download and run the script:
 
 ```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/main/samba.sh
 chmod +x samba.sh
 sudo ./samba.sh
 ```
 
 ## Accessing the Shares
 
-After the script completes, access the shares from Windows using:
+After the script completes, connect to:
 
 ```text
 \\SERVER_IP\test
