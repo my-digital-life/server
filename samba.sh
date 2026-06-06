@@ -101,6 +101,7 @@ printf '  \\\\%s\\share\n' "$IP"
 echo
 
 echo "Samba User:"
+echo "Needed For Windows 11"
 echo "  user / user"
 echo
 
@@ -110,6 +111,7 @@ echo
 
 echo "To view share contents:"
 echo "  ls -lah /mnt/media/share"
+echo "  ls -lah /mnt/media/test"
 echo
 
 echo "======================================"
