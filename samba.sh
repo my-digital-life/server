@@ -14,10 +14,10 @@ echo "=== Creating Samba user ==="
 
 if ! id user >/dev/null 2>&1; then
 useradd -m -s /bin/bash user
-echo "user" | chpasswd
+echo "user:user" | chpasswd
 fi
 
-(echo user; echo user) | smbpasswd -a -s user >/dev/null 2>&1 || true
+(echo user; echo user) | smbpasswd -a -s user >/dev/null echo "user:user" | chpasswd2>&1 || true
 smbpasswd -e user
 
 echo "=== Setting ownership and permissions ==="
