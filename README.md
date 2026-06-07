@@ -19,6 +19,8 @@ https://github.com/my-digital-life/server
 
 ## Samba Server + Windows share mount Setup
 
+#####    This script may be broken I'll check some other day
+
 **Script:** [samba-windows-share-setup.sh](https://github.com/my-digital-life/server/blob/main/samba-windows-share-setup.sh)
 
 **Documentation:** [README-samba-setup.md](https://github.com/my-digital-life/server/blob/main/README-samba-setup.md)
