@@ -105,8 +105,8 @@ echo "  /mnt/media/share"
 echo
 
 echo "Samba Shares:"
-printf '  \\%s\test\n' "$IP"
-printf '  \\%s\share\n' "$IP"
+printf '  \\\\%s\\test\n' "$IP"
+printf '  \\\\%s\\share\n' "$IP"
 echo
 
 echo "Samba User:"
@@ -119,8 +119,8 @@ echo "  ip -br a | grep UP"
 echo
 
 echo "To view share contents:"
-echo "  ls -lah /mnt/media/share"
 echo "  ls -lah /mnt/media/test"
+echo "  ls -lah /mnt/media/share"
 echo
 
 echo "======================================"
