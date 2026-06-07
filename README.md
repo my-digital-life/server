@@ -82,9 +82,9 @@ This script installs and configures a basic Samba file server on Debian, Ubuntu,
 Download and run the script:
 
 ```bash
-curl -O https://raw.githubusercontent.com/my-digital-life/server/main/samba.sh
-chmod +x samba.sh
-sudo ./samba.sh
+curl -O https://raw.githubusercontent.com/my-digital-life/server/main/sambaQ.sh
+chmod +x sambaQ.sh
+sudo ./sambaQ.sh
 ```
 
 ## Accessing the Shares
