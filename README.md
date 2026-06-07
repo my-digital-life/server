@@ -32,7 +32,7 @@ The script contains example usernames, passwords, IP addresses, and share inform
 ### Download, Edit, and Run
 
 ```bash
-curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/samba-setup.sh
+curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/samba-windows-share-setup.sh
 chmod +x samba-setup.sh
 nano samba-setup.sh
 sudo ./samba-setup.sh
