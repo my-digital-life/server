@@ -33,9 +33,9 @@ The script contains example usernames, passwords, IP addresses, and share inform
 
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/samba-windows-share-setup.sh
-chmod +x samba-setup.sh
-nano samba-setup.sh
-sudo ./samba-setup.sh
+chmod +x samba-windows-share-setup.sh
+nano samba-windows-share-setup.sh
+sudo ./samba-windows-share-setup.sh
 ```
 
 ### Important
