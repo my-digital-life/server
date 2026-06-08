@@ -108,12 +108,19 @@ chmod +x sambaQ.sh
 sudo ./sambaQ.sh
 ```
 
-###### Easy way
+##### Easy way
+######  Note: sambaQ.sh and sambaK.sh are basically the same K has more error rreporting
 
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/main/sambaQ.sh
 chmod +x sambaQ.sh
 sudo ./sambaQ.sh
+```
+
+```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/main/sambaK.sh
+chmod +x sambaK.sh
+sudo ./sambaK.sh
 ```
 
 ## Accessing the Shares
