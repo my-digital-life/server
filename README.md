@@ -34,7 +34,8 @@ The script contains example usernames, passwords, IP addresses, and share inform
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/samba-windows-share-setup.sh
 chmod +x samba-windows-share-setup.sh
-nano samba-windows-share-setup.sh # edit line 31,32 for linux share & line 45 for workgroup & 72,74 for Windows share //IP/folder
+# edit line 31,32 for linux share & line 45 for workgroup & 72,74 for Windows share //IP/folder
+nano samba-windows-share-setup.sh
 sudo ./samba-windows-share-setup.sh
 ```
 
