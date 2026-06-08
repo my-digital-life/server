@@ -67,7 +67,7 @@ force create mode = 0777
 force directory mode = 0777
 EOF
 
-echo "=== Configuring automatic mount ==="
+echo "=== Configuring automatic mount to Windows Share ==="
 
 grep -q "//192.168.1.11/stuff" /etc/fstab || cat >> /etc/fstab <<EOF
 
