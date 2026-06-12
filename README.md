@@ -21,19 +21,17 @@ https://github.com/my-digital-life/server
 
 #####    This script may be broken I'll check some other day
 
-**Script:** [samba-windows-share-setup.sh](https://github.com/my-digital-life/server/blob/main/mount-windows-share.sh)
+**Script:** [mount-windows-share.sh](https://github.com/my-digital-life/server/blob/main/mount-windows-share.sh)
 
-**Documentation:** [README-samba-setup.md](https://github.com/my-digital-life/server/blob/main/README-samba-setup.md)
-
-This script installs and configures a Samba file server for sharing files between Linux and Windows systems. It can create shares, configure Samba, create Samba users, mount remote Windows shares, and enable services automatically.
+This script installs and configures a Samba file server for sharing files between Linux and Windows systems. It can create share mount remote Windows shares, and enable services automatically.
 
 The script contains example usernames, passwords, IP addresses, and share information. Before running the script, review and edit these values to match your environment. Failure to change the default credentials may result in authentication failures or security issues.
 
 ### Download, Edit, and Run
 
 ```bash
-curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/samba-windows-share-setup.sh
-chmod +x samba-windows-share-setup.sh
+curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/mount-windows-share.sh
+chmod +x mount-windows-share.sh
 # edit top lines
 nano mount-windows-share.sh
 sudo ./mount-windows-share.sh
