@@ -22,8 +22,8 @@ https://github.com/my-digital-life/server
 #####    This script may be broken I'll check some other day
 
 **Script:** [mount-windows-share.sh](https://github.com/my-digital-life/server/blob/main/mount-windows-share.sh)
-
-This script installs and configures a Samba file server for sharing files between Linux and Windows systems. It can create share mount remote Windows shares, and enable services automatically.
+**Script:** [winshare.sh](https://github.com/my-digital-life/server/blob/main/winshare.sh)
+These scripts installs and configures a Samba file server for sharing files between Linux and Windows systems. It can create share mount remote Windows shares, and enable services automatically.
 
 The script contains example usernames, passwords, IP addresses, and share information. Before running the script, review and edit these values to match your environment. Failure to change the default credentials may result in authentication failures or security issues.
 
@@ -35,6 +35,14 @@ chmod +x mount-windows-share.sh
 # edit top lines
 nano mount-windows-share.sh
 sudo ./mount-windows-share.sh
+```
+
+This one is more automated you don't need to edit with nano
+
+```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/winshare.sh
+chmod +x winshare.sh
+sudo ./winshare.sh
 ```
 
 ### Important
