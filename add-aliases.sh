@@ -28,10 +28,8 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 # Package Management
-alias update='sudo apt update && sudo apt upgrade -y'
-alias fullupdate='sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y'
+alias update='sudo apt update && sudo apt full-upgrade -y'
 alias cleanup='sudo apt autoremove -y && sudo apt autoclean'
-
 alias install='sudo apt install'
 alias remove='sudo apt remove'
 alias search='apt search'
@@ -40,7 +38,7 @@ alias search='apt search'
 alias ports='ss -tulpen'
 alias myip='curl -s ifconfig.me'
 alias localip='ip addr show'
-alias pingf='ping -c 3'
+alias ping='ping -c 3'
 
 # Disk Usage
 alias df='df -h'
