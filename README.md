@@ -50,7 +50,7 @@ sudo ./winshare.sh
 Before running the script, verify and update:
 
 * Windows username and password
-* Windows domain or workgroup # todo add workgroup ?
+* Windows domain or workgroup # todo add workgroup to winshare.sh ?
 * Windows share path
 * IP addresses
 * Shared folder names
