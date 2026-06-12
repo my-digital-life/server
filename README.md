@@ -17,11 +17,11 @@ https://github.com/my-digital-life/server
 
 ---
 
-## Samba Server + Windows share mount Setup
+## Windows share mount Setup
 
 #####    This script may be broken I'll check some other day
 
-**Script:** [samba-windows-share-setup.sh](https://github.com/my-digital-life/server/blob/main/samba-windows-share-setup.sh)
+**Script:** [samba-windows-share-setup.sh](https://github.com/my-digital-life/server/blob/main/mount-windows-share.sh)
 
 **Documentation:** [README-samba-setup.md](https://github.com/my-digital-life/server/blob/main/README-samba-setup.md)
 
@@ -34,23 +34,20 @@ The script contains example usernames, passwords, IP addresses, and share inform
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/samba-windows-share-setup.sh
 chmod +x samba-windows-share-setup.sh
-# edit line 31,32 for linux share & line 45 for workgroup & 72,74 for Windows share //IP/folder
-nano samba-windows-share-setup.sh
-sudo ./samba-windows-share-setup.sh
+# edit top lines
+nano mount-windows-share.sh
+sudo ./mount-windows-share.sh
 ```
 
 ### Important
 
 Before running the script, verify and update:
 
-* Samba username and password
 * Windows username and password
-* Windows domain or workgroup
+* Windows domain or workgroup # todo add workgroup ?
 * Windows share path
 * IP addresses
 * Shared folder names
-
-Refer to `README-samba-setup.md` for additional details and configuration information.
 
 ---
 
