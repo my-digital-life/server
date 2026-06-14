@@ -161,6 +161,10 @@ Password: user
 
 **Documentation:** [README-kali-zsh.md](https://github.com/my-digital-life/server/blob/main/README-kali-zsh.md)
 
+Use zsh2.sh kali-zsh.sh has some root issues
+
+zsh2.sh will also ask if you want zsh for more users if present.
+
 This script transforms a standard Linux terminal into a Kali Linux-inspired environment using ZSH and Oh My Posh. It installs required packages, configures themes, improves shell usability, and provides a cleaner and more informative command-line experience.
 
 ### Download and Run
