@@ -3,6 +3,11 @@ set -e
 
 ###############################################################################
 # EDIT THESE VARIABLES BEFORE RUNNING
+# Note Windows uses \\192.168.1.9\stuff
+# Linux uses //192.168.1.10/stuff
+# Remember to change the slashes
+# \  = backslash (Windows)
+# /  = forward slash (Linux)
 ###############################################################################
 
 # Windows share path (example shown)
