@@ -210,6 +210,13 @@ curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main
 chmod +x ssh.sh
 sudo ./ssh.sh
 ```
+---
+
+## SSH Passwordless Setup (Windows to Ubuntu) sshpass.md  
+
+[Readme-sshpass.md](https://github.com/my-digital-life/server/blob/main/Readme-sshpass.md)  
+
+---
 
 # Configure Network & Samba
 
@@ -309,9 +316,7 @@ Removal script used to uninstall or clean up ZSH and Oh My Posh configurations.
 ---
 
 
-## SSH Passwordless Setup (Windows to Ubuntu) sshpass.md  
 
-[Readme-sshpass.md](https://github.com/my-digital-life/server/blob/main/Readme-sshpass.md)
 
 ## License
 
