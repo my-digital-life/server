@@ -1,3 +1,7 @@
+# SSH Passwordless Setup (Windows to Ubuntu)
+
+This guide helps you configure passwordless SSH authentication from your Windows machine to your Ubuntu VM. This is required to automate scripts without being prompted for a password.
+
 Generate the Key Manually  
 Run this simple command in PowerShell:  
 PowerShell  
@@ -17,9 +21,11 @@ Run this command:
 PowerShell  
 
 ```
-cat $HOME\.ssh\id_ed25519.pub | ssh ub@192.168.1.155 "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"'
+cat $HOME\.ssh\id_ed25519.pub | ssh ub@192.168.1.155 "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
 ```
-(Again, you will be prompted to type yes to accept the fingerprint, and then it will ask for your VM password password one last time.)  
+
+When prompted, type yes (host fingerprint) and enter the current ub password once.	
+
 3. Verification  
 Once that command completes, try to SSH into the machine:  
 PowerShell  
@@ -29,3 +35,11 @@ ssh ub@192.168.1.155
 ```
 
 If it logs you straight into the shell without asking for a password, you have successfully set up the secure "handshake" that allows your scripts to run without being blocked by manual authentication.
+
+
+"Troubleshooting":
+
+    Troubleshooting:	
+    If you recreate the VM, you will get a "REMOTE HOST IDENTIFICATION HAS CHANGED" warning. Run ssh-keygen -R 192.168.1.155 in PowerShell to clear the old host key, then repeat the steps above.
+
+Does this simplified structure work for your needs, or were you looking to add more detail regarding the automated scripts themselves?
