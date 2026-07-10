@@ -21,5 +21,6 @@ cat $HOME\.ssh\id_ed25519.pub | ssh ub@192.168.1.155 "mkdir -p ~/.ssh && chmod 7
 Once that command completes, try to SSH into the machine:  
 PowerShell  
 
-ssh ub@192.168.1.155
+ssh ub@192.168.1.155	
+
 If it logs you straight into the shell without asking for a password, you have successfully set up the secure "handshake" that allows your scripts to run without being blocked by manual authentication.
