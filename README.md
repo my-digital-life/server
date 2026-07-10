@@ -308,6 +308,11 @@ Removal script used to uninstall or clean up ZSH and Oh My Posh configurations.
 
 ---
 
+
+## SSH Passwordless Setup (Windows to Ubuntu) sshpass.md  
+
+[sshpass.md](https://github.com/my-digital-life/server/blob/main/sshpass.md)
+
 ## License
 
 Use, modify, and distribute as needed.
@@ -315,6 +320,3 @@ Use, modify, and distribute as needed.
 No warranty is provided. Review all code before use.
 
 
-SSH Passwordless Setup (Windows to Ubuntu) sshpass.md  
-
-[sshpass.md](https://github.com/my-digital-life/server/blob/main/sshpass.md)
