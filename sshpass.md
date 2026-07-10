@@ -37,9 +37,16 @@ ssh ub@192.168.1.155
 If it logs you straight into the shell without asking for a password, you have successfully set up the secure "handshake" that allows your scripts to run without being blocked by manual authentication.
 
 
-"Troubleshooting":
+Troubleshooting:	
 
-    Troubleshooting:	
-    If you recreate the VM, you will get a "REMOTE HOST IDENTIFICATION HAS CHANGED" warning. Run ssh-keygen -R 192.168.1.155 in PowerShell to clear the old host key, then repeat the steps above.
+If you already have a old logon from making a new VM, you will get a "REMOTE HOST IDENTIFICATION HAS CHANGED" warning. 	
+
+Run	
+
+```
+ssh-keygen -R 192.168.1.155
+```
+
+in PowerShell to clear the old host key, then repeat the steps above.
 
 Does this simplified structure work for your needs, or were you looking to add more detail regarding the automated scripts themselves?
