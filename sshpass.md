@@ -48,5 +48,3 @@ ssh-keygen -R 192.168.1.155
 ```
 
 in PowerShell to clear the old host key, then repeat the steps above.
-
-Does this simplified structure work for your needs, or were you looking to add more detail regarding the automated scripts themselves?
