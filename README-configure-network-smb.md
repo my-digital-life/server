@@ -9,7 +9,7 @@ A simple script that performs basic network and Samba configuration tasks on Lin
 - Sets the Samba workgroup to `TOKEN`
 - Restarts the Samba service to apply the changes
 
-> **Note:** This script must be run with root privileges. A backup of your existing Samba configuration is created automatically before any modifications are made.
+> **Note:** This script must be run with root privileges. 
 
 ## Installation & Usage
 
@@ -35,14 +35,3 @@ Before making changes, the script creates a backup similar to:
 - Samba installed
 - Root privileges (`sudo`)
 
-## Repository
-
-https://github.com/my-digital-life/server
-
-## Run
-
-```bash
-curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/configure_network_smb.sh
-chmod +x configure_network_smb.sh
-sudo ./configure_network_smb.sh
-```
