@@ -161,7 +161,13 @@ Password: user
 
 **Documentation:** [README-kali-zsh.md](https://github.com/my-digital-life/server/blob/main/README-kali-zsh.md)
 
-Use zsh2.sh kali-zsh.sh has some root issues
+Use zsh2.sh kali-zsh.sh has some root issues  
+
+```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/zsh2.sh
+chmod +x zsh2.sh
+./zsh2.sh
+```
 
 zsh2.sh will also ask if you want zsh for more users if present.
 
@@ -211,13 +217,13 @@ chmod +x ssh.sh
 sudo ./ssh.sh
 ```
 ---
-
+---  
 ## SSH Passwordless Setup (Windows to Ubuntu) sshpass.md  
 
 [Readme-sshpass.md](https://github.com/my-digital-life/server/blob/main/Readme-sshpass.md)  
 
 ---
-
+---  
 # Configure Network & Samba
 
 A simple script that performs basic network and Samba configuration tasks on Linux systems.
