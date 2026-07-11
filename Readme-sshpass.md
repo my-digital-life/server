@@ -25,6 +25,7 @@ cat $HOME\.ssh\id_ed25519.pub | ssh ub@192.168.1.155 "mkdir -p ~/.ssh && chmod 7
 ```
 
 When prompted, type yes (host fingerprint) and enter the current ub password once.	
+
 NOTE: change host name and ip to suit your needs, If you have more than one ssh server just change	
 
 cat $HOME\.ssh\id_ed25519.pub | ssh pi21@192.168.1.21 "mkdir -p.......	
