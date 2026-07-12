@@ -18,7 +18,7 @@ alias mv='mv -i'
 alias rm='rm -i'
 
 # Better ls
-alias ll='ls -alF'
+alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
 
