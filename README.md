@@ -1,4 +1,4 @@
-# Server Scripts Collection
+# Server Scripts Collection: EDIT
 
 A collection of Linux server setup, customization, networking, SSH, Samba, and shell automation scripts for Ubuntu, Debian, Kali Linux, and similar distributions.
 
@@ -157,11 +157,7 @@ Password: user
 
 ## Kali-Style ZSH and Oh My Posh Setup
 
-**Script:** [kali-zsh.sh](https://github.com/my-digital-life/server/blob/main/kali-zsh.sh)
-
-**Documentation:** [README-kali-zsh.md](https://github.com/my-digital-life/server/blob/main/README-kali-zsh.md)
-
-Use zsh2.sh kali-zsh.sh has some root issues  
+zsh2.sh  
 
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/zsh2.sh
@@ -171,7 +167,7 @@ chmod +x zsh2.sh
 
 zsh2.sh will also ask if you want zsh for more users if present.
 
-This script transforms a standard Linux terminal into a Kali Linux-inspired environment using ZSH and Oh My Posh. It installs required packages, configures themes, improves shell usability, and provides a cleaner and more informative command-line experience.
+This script transforms a standard Linux terminal into a Kali Linux-inspired environment using ZSH and Oh My Posh. It installs required packages, configures theme.
 
 ### Download and Run
 
