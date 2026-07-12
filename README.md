@@ -234,10 +234,6 @@ Before making changes, the script creates a backup similar to:
 - Samba installed
 - Root privileges (`sudo`)
 
-## Repository
-
-https://github.com/my-digital-life/server
-
 ---
 
 ## Supporting Files
