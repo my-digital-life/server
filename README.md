@@ -11,12 +11,6 @@ Cross your fingers
 
 ---
 
-## Repository
-
-https://github.com/my-digital-life/server
-
----
-
 ## Windows share mount Setup
 
 #####    This script may be broken I'll check some other day
@@ -79,30 +73,9 @@ This script automates the complete installation and configuration of a Samba ser
 
 ---
 
-## ⚠️ SECURITY WARNINGS (READ BEFORE USING)
-**Do NOT use this script on a machine connected directly to the Internet.**  
-This script prioritizes **speed and convenience** over hardening. If you deploy it on a public server or unsecured network, you expose your system to significant risks.
-
-| Risk Area | Detail | Recommendation |
-|-----------|--------|----------------|
-| **Credentials** | Default username/password is hardcoded as `user / user`. | Change variables before running; never use this on public IPs. |
-| **Permissions** | Directories are set to `chmod -R 777` (world-writable). | Only use in trusted LANs; restrict filesystem permissions otherwise. |
-| **Network Exposure** | Ports 139/445 are opened to all interfaces. | Configure your firewall to block inbound traffic except trusted hosts. |
-| **Firewall Rules** | This script does **NOT** manage UFW/iptables. | Manually open necessary ports or disable firewall on trusted test systems. |
-| **Root Access** | Requires `sudo` privileges to install and configure services. | Run only in controlled environments where root access is authorized. |
-
----
-
-## Recommended Workflow
-1. **Clone the Repository** to your provisioning controller.
-2. **Edit Variables**: Modify `SMB_PASS`, `WORKGROUP`, and `MEDIA_BASE` in the script before deployment.
-3. **Test Locally First**: Run the script once on a single isolated VM.
-4. **Mass Deploy**: Apply only after verifying functionality in a safe environment.
-
----
-
 ## How to Run
-On your target Ubuntu 24.04 server:
+On your target Ubuntu 24.04 server:  
+NOTE: Edit file before use, It's hard coded mto test and share
 
 ```bash
 # 1. Make script executable
@@ -256,10 +229,6 @@ Before making changes, the script creates a backup similar to:
 - Linux
 - Samba installed
 - Root privileges (`sudo`)
-
-## Repository
-
-https://github.com/my-digital-life/server
 
 ---
 
