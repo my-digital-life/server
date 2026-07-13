@@ -1,4 +1,4 @@
-# Server Scripts Collection: EDIT
+# Server Scripts Collection:
 
 A collection of Linux server setup, customization, networking, SSH, Samba, and shell automation scripts for Ubuntu, Debian, Kali Linux, and similar distributions.
 
