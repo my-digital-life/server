@@ -157,4 +157,4 @@ The script automatically updates `.zshrc` and reloads the shell configuration.
 
 ## Purpose
 
-These aliases are intended for lab environments, virtual machines, homelabs, development systems, and security testing workstations where quick command-line access is preferred over typing lengthy commands repeatedly.
+These aliases are intended for lab environments, virtual machines, home labs, development systems, and security testing workstations where quick command-line access is preferred over typing lengthy commands repeatedly.

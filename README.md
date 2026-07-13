@@ -81,7 +81,7 @@ sudo ./sambaQ.sh
 ```
 
 ##### Easy way
-######  Note: sambaQ.sh and sambaK.sh are basically the same K has more error rreporting
+######   Note: sambaQ.sh and sambaK.sh are basically the same K has more error reporting
 
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/main/sambaQ.sh

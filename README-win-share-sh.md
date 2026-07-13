@@ -23,7 +23,7 @@ mv /tmp/fstab.new /etc/fstab
 ### Remove existing fstab lines matching this mount point or share path
 
 ### Build mount options, include workgroup if provided  
-Workgroup prompt kept optional, Deful is WORKGROUP  
+Workgroup prompt kept optional, Default is WORKGROUP  
 If your SMB server uses a non-default workgroup or domain, adding either  
 "workgroup=NAME" or "domain=NAME" to the mount options avoids  
 authentication failures and name-resolution issues.
