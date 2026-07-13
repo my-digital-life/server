@@ -18,7 +18,7 @@ Cross your fingers
 These scripts installs and configures a Samba file server for sharing files between Linux and Windows systems. It can create share mount remote Windows shares, and enable services automatically.
 
 The script contains example usernames, passwords, IP addresses, and share information. Before running the script, review and edit these values to match your environment. Failure to change the default credentials may result in authentication failures or security issues.  
-Both scripts add to fstab and auto mount shares to /mnt/media/`share name` and are mounted after scrip finises and also survives reboots
+Both scripts add to fstab and auto mount shares to /mnt/media/`share name` and are mounted after script finishes and also survives reboots
 
 ### Download, Edit, and Run
 
