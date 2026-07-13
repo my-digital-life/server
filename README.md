@@ -57,8 +57,6 @@ Before running the script, verify and update:
 
 Automated Bash script to set up Samba file shares on fresh Ubuntu 24.04 servers. Designed for rapid VM deployment, home labs, and secured internal networks.
 
----
-
 ## What It Does
 This script automates the complete installation and configuration of a Samba server. It handles package installation, user creation, directory setup, permission assignment, and SMB service initialization—all in one go.
 
@@ -71,11 +69,9 @@ This script automates the complete installation and configuration of a Samba ser
 - **Guest Access**: Enables `guest ok = yes` for connection without passwords.
 - **Silent Logs**: Keeps terminal clean during execution using quiet modes (`-qq`).
 
----
-
 ## How to Run
 On your target Ubuntu 24.04 server:  
-NOTE: Edit file before use, It's hard coded mto test and share
+NOTE: Edit file before use, It's hard coded to test and share
 
 ```bash
 # 1. Make script executable
@@ -185,7 +181,6 @@ curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main
 chmod +x ssh.sh
 sudo ./ssh.sh
 ```
----
 ---  
 ## SSH Passwordless Setup (Windows to Ubuntu) sshpass.md  
 
@@ -244,14 +239,6 @@ Contains additional shell aliases and helper commands used by the repository.
 
 Provides terminal theme settings used by the Kali-style ZSH configuration.
 
-### bash
-
-Helper script used for setup and execution tasks.
-
-### remove
-
-Removal script used to uninstall or clean up ZSH and Oh My Posh configurations.
-
 ---
 
 ## Documentation
@@ -285,9 +272,6 @@ Removal script used to uninstall or clean up ZSH and Oh My Posh configurations.
 * Documentation for each script is available in the corresponding README file.
 
 ---
-
-
-
 
 ## License
 
