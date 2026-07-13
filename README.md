@@ -11,16 +11,14 @@ Cross your fingers
 
 ---
 
-## Windows share mount Setup
-
-#####    This script may be broken I'll check some other day
+## Mount Windows share Setup
 
 **Script:** [mount-windows-share.sh](https://github.com/my-digital-life/server/blob/main/mount-windows-share.sh)
 **Script:** [winshare.sh](https://github.com/my-digital-life/server/blob/main/winshare.sh)
 These scripts installs and configures a Samba file server for sharing files between Linux and Windows systems. It can create share mount remote Windows shares, and enable services automatically.
 
-The script contains example usernames, passwords, IP addresses, and share information. Before running the script, review and edit these values to match your environment. Failure to change the default credentials may result in authentication failures or security issues.
-
+The script contains example usernames, passwords, IP addresses, and share information. Before running the script, review and edit these values to match your environment. Failure to change the default credentials may result in authentication failures or security issues.  
+both scripts mount shares to /mnt/media/`share name`  
 ### Download, Edit, and Run
 
 ```bash
