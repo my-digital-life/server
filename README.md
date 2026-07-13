@@ -18,7 +18,8 @@ Cross your fingers
 These scripts installs and configures a Samba file server for sharing files between Linux and Windows systems. It can create share mount remote Windows shares, and enable services automatically.
 
 The script contains example usernames, passwords, IP addresses, and share information. Before running the script, review and edit these values to match your environment. Failure to change the default credentials may result in authentication failures or security issues.  
-both scripts mount shares to /mnt/media/`share name`  
+Both scripts add to fstab and auto mount shares to /mnt/media/`share name` and are mounted after scrip finises and also survives reboots
+
 ### Download, Edit, and Run
 
 ```bash
@@ -29,7 +30,7 @@ nano mount-windows-share.sh
 sudo ./mount-windows-share.sh
 ```
 
-This one is more automated you don't need to edit with nano
+This one is more automated you don't need to edit with nano, It will prompt for Username,Password and //ip/share-name
 
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/winshare.sh
@@ -121,6 +122,7 @@ Password: user
 * Windows 11 may require authentication even when guest access is enabled.
 
 ---
+--- 
 
 ## Kali-Style ZSH and Oh My Posh Setup
 
@@ -144,8 +146,6 @@ chmod +x kali-zsh.sh
 ./kali-zsh.sh
 ```
 
----
-
 ## Alias Installer
 
 **Script:** [add-aliases.sh](https://github.com/my-digital-life/server/blob/main/add-aliases.sh)
@@ -163,6 +163,7 @@ chmod +x add-aliases.sh
 ```
 
 ---
+--- 
 
 ## SSH Configuration Script
 
@@ -179,13 +180,14 @@ curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main
 chmod +x ssh.sh
 sudo ./ssh.sh
 ```
----  
+
 ## SSH Passwordless Setup (Windows to Ubuntu) sshpass.md  
 
 [Readme-sshpass.md](https://github.com/my-digital-life/server/blob/main/Readme-sshpass.md)  
 
 ---
 ---  
+
 # Configure Network & Samba
 
 A simple script that performs basic network and Samba configuration tasks on Linux systems.
@@ -224,20 +226,7 @@ Before making changes, the script creates a backup similar to:
 - Root privileges (`sudo`)
 
 ---
-
-## Supporting Files
-
-These files are used by the setup scripts and may also be useful on their own.
-
-### alias
-
-Contains additional shell aliases and helper commands used by the repository.
-
-### terminal-theme-kali
-
-Provides terminal theme settings used by the Kali-style ZSH configuration.
-
----
+--- 
 
 ## Documentation
 
