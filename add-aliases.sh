@@ -39,6 +39,8 @@ alias ports='ss -tulpen'
 alias myip='curl -s ifconfig.me'
 alias localip='ip addr show'
 alias ping='ping -c 3'
+alias ii='ip -br a'
+alias ipa='ip -br a'
 
 # Disk Usage
 alias df='df -h'
