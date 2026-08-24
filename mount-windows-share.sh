@@ -11,7 +11,7 @@ set -e
 ###############################################################################
 
 # Windows share path (example shown)
-WIN_PATH="//192.168.1.10/stuff"
+WIN_PATH="//192.168.1.9/share"
 
 # Windows username
 WIN_USER="John"
