@@ -150,6 +150,7 @@ zsh2.sh will also ask if you want zsh for more users if present.
 
 ## Alias Installer
 
+**Script:** [new-zshrc.sh](https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/new-zshrc.sh)
 **Script:** [add-aliases.sh](https://github.com/my-digital-life/server/blob/main/add-aliases.sh)
 
 **Documentation:** [README-add-aliases.md](https://github.com/my-digital-life/server/blob/main/README-add-aliases.md)
