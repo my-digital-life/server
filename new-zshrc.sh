@@ -1,3 +1,12 @@
+#!/bin/bash
+
+echo ">>> Installing Kali-style aliases and functions..."
+
+# Remove old block if it exists
+sed -i '/# BEGIN KALI ALIASES/,/# END KALI ALIASES/d' ~/.zshrc
+
+cat >> ~/.zshrc << 'EOF'
+
 export PATH="$HOME/.local/bin:$PATH"
 
 # OH MY POSH
@@ -123,3 +132,19 @@ extract() {
     fi
 }
 # END KALI ALIASES
+
+EOF
+
+# Reload configuration for the current session
+source ~/.zshrc
+
+echo
+echo "=========================================="
+echo "INSTALLATION COMPLETE"
+echo "=========================================="
+echo
+echo "Launching Kali-style ZSH..."
+sleep 2
+
+# Replace the current process with a new zsh session
+exec zsh
