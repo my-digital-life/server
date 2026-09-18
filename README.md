@@ -160,6 +160,13 @@ This script installs a collection of useful aliases and shell functions commonly
 ### Download and Run
 
 ```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/new-zshrc.sh
+chmod +x new-zshrc.sh
+./new-zshrc.sh
+```
+
+
+```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/add-aliases.sh
 chmod +x add-aliases.sh
 ./add-aliases.sh
