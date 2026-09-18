@@ -1,0 +1,125 @@
+export PATH="$HOME/.local/bin:$PATH"
+
+# OH MY POSH
+eval "$($HOME/.local/bin/oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/kali.omp.json)"
+
+# --- ZSH HISTORY ---
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=50000
+export SAVEHIST=50000
+
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt EXTENDED_HISTORY
+
+# PLUGINS
+source ~/.zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh-history-substring-search/zsh-history-substring-search.zsh
+source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# FZF
+[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+[ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
+
+# HISTORY SEARCH
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+
+# BEGIN KALI ALIASES
+# ==========================================
+# KALI-STYLE ALIASES
+# ==========================================
+
+# Safer file operations
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+
+# Better ls
+alias ll='ls -alFh'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Package Management
+alias update='sudo apt update && sudo apt full-upgrade -y'
+alias cleanup='sudo apt autoremove -y && sudo apt autoclean'
+alias install='sudo apt install'
+alias remove='sudo apt remove'
+alias search='apt search'
+
+# Networking
+alias ports='ss -tulpen'
+alias myip='curl -s ifconfig.me'
+alias localip='ip addr show'
+alias ping='ping -c 3'
+alias ii='ip -br a'
+alias ipa='ip -br a'
+
+# Disk Usage
+alias df='df -h'
+alias du='du -h'
+
+# Process Viewing
+alias psa='ps auxf'
+
+# Grep Colors
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# Convenience
+alias cls='clear'
+alias reload='source ~/.zshrc'
+
+# ZSH Management
+alias zshconfig='nano ~/.zshrc'
+alias aliases='nano ~/.zshrc'
+alias shell='echo $SHELL'
+alias zver='echo $ZSH_VERSION'
+
+# Git Shortcuts
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gl='git pull'
+
+# ==========================================
+# FUNCTIONS
+# ==========================================
+
+# Make directory and enter it
+mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+
+# Extract most common archive formats
+extract() {
+    if [ -f "$1" ]; then
+        case "$1" in
+            *.tar.bz2) tar xjf "$1" ;;
+            *.tar.gz) tar xzf "$1" ;;
+            *.bz2) bunzip2 "$1" ;;
+            *.rar) unrar x "$1" ;;
+            *.gz) gunzip "$1" ;;
+            *.tar) tar xf "$1" ;;
+            *.tbz2) tar xjf "$1" ;;
+            *.tgz) tar xzf "$1" ;;
+            *.zip) unzip "$1" ;;
+            *.7z) 7z x "$1" ;;
+            *) echo "Cannot extract '$1'" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+# END KALI ALIASES
