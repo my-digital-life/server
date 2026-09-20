@@ -50,16 +50,53 @@ Before running the script, verify and update:
 
 ---
 
-# Samba Share Setup Script
+# Dynamic Samba Share Maker (`share-maker.sh`)
 
-#####  Samba Provisioning Script (Ubuntu 24.04)
+An interactive, automated Bash script designed for Ubuntu Server 24.04 (and other Debian-based distributions) to instantly set up and configure customized Samba network shares.
 
-Automated Bash script to set up Samba file shares on fresh Ubuntu 24.04 servers. Designed for rapid VM deployment, home labs, and secured internal networks.
+---
 
-## What It Does
-This script automates the complete installation and configuration of a Samba server. It handles package installation, user creation, directory setup, permission assignment, and SMB service initialization—all in one go.
+## 🌟 Key Features
 
---- 
+* **Auto-Elevation to Root:** Automatically prompts for `sudo` access if executed by a non-root user.
+* **Custom Domain/Workgroup Prompt:** Allows custom workgroup/domain naming with a default fallback to `WORKGROUP`.
+* **Custom Samba Credentials:** Prompts for custom Samba username and password (defaults to `user` / `user` if skipped).
+* **Dynamic Multi-Share Creation:** Specify any number of shares to create at once; the script dynamically creates folders under `/mnt/media/` and mounts them into Samba.
+* **Automatic Dependency Management:** Silently installs `samba`, `samba-common-bin`, and `acl` package dependencies.
+* **Full RW Permissions:** Automatically manages file permissions (`777`), directory ownership, and POSIX ACLs for seamless cross-network read/write access.
+* **Network & Firewall Auto-Detection:** Auto-detects local IPv4 addresses, opens standard Samba ports in `ufw`, and outputs clean Windows UNC file paths (`\\IP\share_name`).
+
+---
+
+## 🚀 One-Liner Quick Run
+
+Run the script directly from GitHub using `curl`:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/my-digital-life/server/main/share-maker.sh | sudo bash
+```
+
+Alternatively, download, make executable, and run locally:
+
+```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/main/share-maker.sh
+chmod +x share-maker.sh
+./share-maker.sh
+```
+
+---
+
+## 📋 Interactive Prompts Overview
+
+When executed, the script guides you through the following prompts:
+
+1. **Domain/Workgroup Name:** Press `Enter` to accept `WORKGROUP` or type your network domain.
+2. **Samba Username:** Press `Enter` for default (`user`) or type a custom username.
+3. **Samba Password:** Press `Enter` for default (`user`) or type a custom password.
+4. **Number of Shares:** Specify how many folders you want to create (e.g., `3`).
+5. **Share Names:** Enter the desired folder names for each share (e.g., `Movies`, `TV`, `Documents`).
+
+---
 
 ## Kali-Style ZSH and Oh My Posh Setup
 ##### I like kali-zsh.sh
