@@ -20,6 +20,7 @@ An interactive, automated Bash script designed for Ubuntu Server 24.04 (and othe
 
 Run the script directly from GitHub using `curl`:
 
+
 share-maker2.sh
 
 ```bash
@@ -30,8 +31,8 @@ Alternatively, download, make executable, and run locally:
 
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/share-maker2.sh
-chmod +x share-maker.sh
-./share-maker.sh
+chmod +x share-maker2.sh
+./share-maker2.sh
 ```
 
 share-maker.sh
