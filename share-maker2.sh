@@ -164,7 +164,7 @@ for i in "${!FOLDER_NAMES[@]}"; do
     path = ${SHARE_PATHS[$i]}
     browseable = yes
     writable = yes
-    guest ok = yes
+    guest ok = no
     read only = no
     force user = ${SMB_USER}
     create mask = 0777
