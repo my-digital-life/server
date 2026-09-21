@@ -54,8 +54,6 @@ Before running the script, verify and update:
 
 An interactive, automated Bash script designed for Ubuntu Server 24.04 (and other Debian-based distributions) to instantly set up and configure customized Samba network shares.
 
----
-
 ## 🌟 Key Features
 
 * **Auto-Elevation to Root:** Automatically prompts for `sudo` access if executed by a non-root user.
@@ -66,25 +64,35 @@ An interactive, automated Bash script designed for Ubuntu Server 24.04 (and othe
 * **Full RW Permissions:** Automatically manages file permissions (`777`), directory ownership, and POSIX ACLs for seamless cross-network read/write access.
 * **Network & Firewall Auto-Detection:** Auto-detects local IPv4 addresses, opens standard Samba ports in `ufw`, and outputs clean Windows UNC file paths (`\\IP\share_name`).
 
----
-
 ## 🚀 One-Liner Quick Run
 
 Run the script directly from GitHub using `curl`:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/my-digital-life/server/main/share-maker.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/share-maker2.sh | sudo bash
 ```
 
 Alternatively, download, make executable, and run locally:
+
+```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/share-maker2.sh
+chmod +x share-maker2.sh
+./share-maker.sh
+```
+
+Older script:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/my-digital-life/server/main/share-maker.sh | sudo bash
+```
+
+Older script:
 
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/main/share-maker.sh
 chmod +x share-maker.sh
 ./share-maker.sh
 ```
-
----
 
 ## 📋 Interactive Prompts Overview
 
@@ -145,8 +153,6 @@ curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main
 chmod +x add-aliases.sh
 ./add-aliases.sh
 ```
-
----
 --- 
 
 ## SSH Configuration Script
@@ -169,7 +175,6 @@ sudo ./ssh.sh
 
 [Readme-sshpass.md](https://github.com/my-digital-life/server/blob/main/Readme-sshpass.md)  
 
----
 ---  
 
 # Configure Network & Samba
