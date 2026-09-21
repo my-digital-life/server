@@ -77,7 +77,7 @@ Alternatively, download, make executable, and run locally:
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/share-maker2.sh
 chmod +x share-maker2.sh
-./share-maker.sh
+./share-maker2.sh
 ```
 
 Older script:
