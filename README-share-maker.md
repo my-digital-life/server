@@ -34,6 +34,11 @@ chmod +x share-maker.sh
 
 ---
 
+# Auto-Detection & Preservation Feature
+
+The script includes smart auto-detection capabilities that make re-running it seamless without breaking your existing setup or credentials.
+
+
 ## 📋 Interactive Prompts Overview
 
 When executed, the script guides you through the following prompts:
@@ -43,6 +48,20 @@ When executed, the script guides you through the following prompts:
 3. **Samba Password:** Press `Enter` for default (`user`) or type a custom password.
 4. **Number of Shares:** Specify how many folders you want to create (e.g., `3`).
 5. **Share Names:** Enter the desired folder names for each share (e.g., `Movies`, `TV`, `Documents`).
+
+# Auto-Detection & Preservation Feature
+
+The script includes smart auto-detection capabilities that make re-running it seamless without breaking your existing setup or credentials.
+
+## What's New
+
+### 🔍 Automatic Configuration Detection
+* **Existing Workgroup/Domain:** Scans `/etc/samba/smb.conf` on launch to detect your active Workgroup name and sets it as the default prompt value.
+* **Existing Username:** Identifies existing SMB user configurations (`force user`) and suggests your current username as the default.
+
+### 🔑 Password Preservation
+* **Keep Existing Credentials:** If the selected Samba user already exists on the Linux system, you can press **`Enter`** to leave the password field blank.
+* **No Accidental Reset:** Leaving the password blank instructs the script to bypass `chpasswd` and `smbpasswd`, leaving your existing user password completely untouched and functional.
 
 ---
 
@@ -99,3 +118,14 @@ The script creates shares under `/mnt/media/`:
 
 * **OS:** Ubuntu Server 24.04 LTS (or compatible Debian/Ubuntu derivatives)
 * **Privileges:** `sudo` access or root user
+
+---
+
+## Example Prompt Flow
+
+```text
+Enter Domain/Workgroup name [WORKGROUP]: 
+Enter Samba Username [user]: 
+Enter Samba Password (leave blank to keep existing password): 
+How many shares/folders would you like to create? 1
+Enter name for Share #1: media2
