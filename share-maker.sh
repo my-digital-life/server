@@ -102,9 +102,8 @@ done
 # --- SAMBA CONFIGURATION ---
 log_step "Writing Samba Configuration..."
 
-rm -f /etc/samba/smb.conf
-
-# Write [global] configuration
+# Create smb.conf with [global] ONLY if it does not already exist
+if [ ! -f /etc/samba/smb.conf ]; then
 cat > /etc/samba/smb.conf << EOF
 [global]
     workgroup = ${WORKGROUP}
@@ -116,12 +115,18 @@ cat > /etc/samba/smb.conf << EOF
     log level = 1
     passdb backend = tdbsam
 EOF
+fi
 
-# Append share configurations dynamically
+# Append share configurations dynamically without duplicating existing ones
 for i in "${!FOLDER_NAMES[@]}"; do
-    cat >> /etc/samba/smb.conf << EOF
+    SHARE_NAME="${FOLDER_NAMES[$i]}"
+    
+    if grep -q "^\\[${SHARE_NAME}\\]" /etc/samba/smb.conf; then
+        echo "Note: Share [${SHARE_NAME}] already exists in /etc/samba/smb.conf. Skipping entry addition."
+    else
+        cat >> /etc/samba/smb.conf << EOF
 
-[${FOLDER_NAMES[$i]}]
+[${SHARE_NAME}]
     path = ${SHARE_PATHS[$i]}
     browseable = yes
     writable = yes
@@ -133,6 +138,7 @@ for i in "${!FOLDER_NAMES[@]}"; do
     force create mode = 0777
     force directory mode = 0777
 EOF
+    fi
 done
 
 # Validate config before restarting
@@ -167,7 +173,7 @@ echo "======================================"
 echo "Workgroup / Domain:"
 echo "  ${WORKGROUP}"
 echo ""
-echo "Folders & Access URLs (Windows):"
+echo "New Folders & Access URLs (Windows):"
 for name in "${FOLDER_NAMES[@]}"; do
     echo "  - ${MEDIA_BASE}/${name}"
     echo "    \\\\${LAN_IP}\\${name}"
