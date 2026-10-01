@@ -69,7 +69,8 @@ An interactive, automated Bash script designed for Ubuntu Server 24.04 (and othe
 
 When executed, the script guides you through the following prompts:
 
-1. **Domain/Workgroup Name:** Press `Enter` to accept `WORKGROUP` or type your network domain.
+1. **Domain/Workgroup Name:** Press `Enter` to accept `WORKGROUP` or type your network domain. 
+     `Note: It might auto detect your workgroup name on certain systems`
 2. **Samba Username:** Press `Enter` for default (`user`) or type a custom username.
 3. **Samba Password:** Press `Enter` for default (`user`) or type a custom password.
 4. **Number of Shares:** Specify how many folders you want to create (e.g., `3`).
