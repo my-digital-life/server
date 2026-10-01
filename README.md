@@ -6,7 +6,7 @@ This repository contains scripts that I use to quickly configure new systems, au
 
 these commands only work if you use your thumbs to type them in  
 use at your own risk !!!!  
-backup your router first !!!!  
+backup your router first it runs Linux too!!!!  
 Cross your fingers  
 
 ---
