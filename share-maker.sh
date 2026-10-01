@@ -242,6 +242,6 @@ echo "New Folders & Access URLs (Windows):"
 echo "Windows is a pain in the ass, open  "
 echo "file explorer and type this into the address bar :"
 for name in "${FOLDER_NAMES[@]}"; do
-    echo "  - \\\\${LAN_IP}\\${name}"
+    echo "    \\\\${LAN_IP}\\${name}  "
 done
 echo "======================================"
