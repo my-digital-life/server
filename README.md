@@ -50,7 +50,7 @@ Before running the script, verify and update:
 
 ---
 
-# Dynamic Samba Share Maker (`share-maker.sh`)
+# Dynamic Samba Share Maker for linux (`share-maker.sh`)
 
 An interactive, automated Bash script designed for Ubuntu Server 24.04 (and other Debian-based distributions) to instantly set up and configure customized Samba network shares.
 
@@ -68,6 +68,20 @@ An interactive, automated Bash script designed for Ubuntu Server 24.04 (and othe
 
 Run the script directly from GitHub using `curl`:
 
+New script:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/my-digital-life/server/main/share-maker.sh | sudo bash
+```
+
+```bash
+curl -O https://raw.githubusercontent.com/my-digital-life/server/main/share-maker.sh
+chmod +x share-maker.sh
+./share-maker.sh
+```
+
+Old script
+
 ```bash
 curl -sSL https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/share-maker2.sh | sudo bash
 ```
@@ -78,20 +92,6 @@ Alternatively, download, make executable, and run locally:
 curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/share-maker2.sh
 chmod +x share-maker2.sh
 ./share-maker2.sh
-```
-
-Older script:
-
-```bash
-curl -sSL https://raw.githubusercontent.com/my-digital-life/server/main/share-maker.sh | sudo bash
-```
-
-Older script:
-
-```bash
-curl -O https://raw.githubusercontent.com/my-digital-life/server/main/share-maker.sh
-chmod +x share-maker.sh
-./share-maker.sh
 ```
 
 ## 📋 Interactive Prompts Overview
