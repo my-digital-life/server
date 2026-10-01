@@ -60,7 +60,7 @@ An interactive, automated Bash script designed for Ubuntu Server 24.04 (and othe
 * **Custom Domain/Workgroup Prompt:** Allows custom workgroup/domain naming with a default fallback to `WORKGROUP`.
 * **Custom Samba Credentials:** Prompts for custom Samba username and password (defaults to `user` / `user` if skipped).
 * **Dynamic Multi-Share Creation:** Specify any number of shares to create at once; the script dynamically creates folders under `/mnt/media/` and mounts them into Samba.
-* **Automatic Dependency Management:** Silently installs `samba`, `samba-common-bin`, and `acl` package dependencies.
+* **Automatic Dependency Management:** Silently installs `samba`, `samba-common-bin` `wsdd2`, and `acl` package dependencies.
 * **Full RW Permissions:** Automatically manages file permissions (`777`), directory ownership, and POSIX ACLs for seamless cross-network read/write access.
 * **Network & Firewall Auto-Detection:** Auto-detects local IPv4 addresses, opens standard Samba ports in `ufw`, and outputs clean Windows UNC file paths (`\\IP\share_name`).
 
