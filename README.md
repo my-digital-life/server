@@ -65,7 +65,17 @@ An interactive, automated Bash script designed for Ubuntu Server 24.04 (and othe
 * **Full RW Permissions:** Automatically manages file permissions (`777`), directory ownership, and POSIX ACLs for seamless cross-network read/write access.
 * **Network & Firewall Auto-Detection:** Auto-detects local IPv4 addresses, opens standard Samba ports in `ufw`, and outputs clean Windows UNC file paths (`\\IP\share_name`).
 
-## 🚀 One-Liner Quick Run
+## 📋 Interactive Prompts Overview
+
+When executed, the script guides you through the following prompts:
+
+1. **Domain/Workgroup Name:** Press `Enter` to accept `WORKGROUP` or type your network domain.
+2. **Samba Username:** Press `Enter` for default (`user`) or type a custom username.
+3. **Samba Password:** Press `Enter` for default (`user`) or type a custom password.
+4. **Number of Shares:** Specify how many folders you want to create (e.g., `3`).
+5. **Share Names:** Enter the desired folder names for each share (e.g., `Movies`, `TV`, `Documents`).
+
+## 🚀 One-Liner Quick Run   
 
 Run the script directly from GitHub using `curl`:
 
@@ -94,16 +104,6 @@ curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main
 chmod +x share-maker2.sh
 ./share-maker2.sh
 ```
-
-## 📋 Interactive Prompts Overview
-
-When executed, the script guides you through the following prompts:
-
-1. **Domain/Workgroup Name:** Press `Enter` to accept `WORKGROUP` or type your network domain.
-2. **Samba Username:** Press `Enter` for default (`user`) or type a custom username.
-3. **Samba Password:** Press `Enter` for default (`user`) or type a custom password.
-4. **Number of Shares:** Specify how many folders you want to create (e.g., `3`).
-5. **Share Names:** Enter the desired folder names for each share (e.g., `Movies`, `TV`, `Documents`).
 
 ---
 
