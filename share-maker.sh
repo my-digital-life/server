@@ -239,9 +239,11 @@ echo "Samba Username:"
 echo "  ${SMB_USER}"
 echo ""
 echo "New Folders & Access URLs (Windows):"
-echo "Windows is a pain in the ass, open  "
-echo "file explorer and type this into the address bar :"
+echo "Windows is a pain in the ass, open file explorer "
+echo " and type this into the address bar :"
+echo ""
 for name in "${FOLDER_NAMES[@]}"; do
     echo "    \\\\${LAN_IP}\\${name}  "
+echo ""    
 done
 echo "======================================"
