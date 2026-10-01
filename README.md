@@ -15,17 +15,12 @@ Cross your fingers
 
 **Script:** [mount-windows-share.sh](https://github.com/my-digital-life/server/blob/main/mount-windows-share.sh)
 **Script:** [winshare.sh](https://github.com/my-digital-life/server/blob/main/winshare.sh)
+
 These scripts installs and configures a Samba file server for sharing files between Linux and Windows systems. It can create share mount remote Windows shares, and enable services automatically.  
 
 Both scripts add to fstab and auto mount shares to /mnt/media/`share name` and are mounted after script finishes and also survives reboots
 
 ### Download, Edit, and Run
-This script is automated, Just answer 5 Questions, 
-1. Workgroup/Domain - Leave blank for WORKGROUP change it if not 
-2. Username - make it different than your Ubuntu username `Not Tested with same name`
-3. Password - Any length will be accepted `Use your own discretion`
-4. How many new shares you want to add
-5. What name for each new folder
    
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/mount-windows-share.sh
