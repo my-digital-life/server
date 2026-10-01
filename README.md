@@ -1,4 +1,4 @@
-# Server Scripts Collection:
+# Server Scripts Collection:   
 
 A collection of Linux server setup, customization, networking, SSH, Samba, and shell automation scripts for Ubuntu, Debian, Kali Linux, and similar distributions.
 
@@ -11,7 +11,7 @@ Cross your fingers
 
 ---
 
-## Mount Windows share Setup
+## Mount Windows share Setup   
 
 **Script:** [mount-windows-share.sh](https://github.com/my-digital-life/server/blob/main/mount-windows-share.sh)
 **Script:** [winshare.sh](https://github.com/my-digital-life/server/blob/main/winshare.sh)
@@ -20,7 +20,7 @@ These scripts installs and configures a Samba file server for sharing files betw
 
 Both scripts add to fstab and auto mount shares to /mnt/media/`share name` and are mounted after script finishes and also survives reboots
 
-### Download, Edit, and Run
+### Download, Edit, and Run   
    
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/mount-windows-share.sh
