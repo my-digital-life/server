@@ -25,9 +25,7 @@ Both scripts add to fstab and auto mount shares to /mnt/media/`share name` and a
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/mount-windows-share.sh
 chmod +x mount-windows-share.sh
-# edit top lines
-nano mount-windows-share.sh
-sudo ./mount-windows-share.sh
+./mount-windows-share.sh
 ```
 
 This one is more automated you don't need to edit with nano, It will prompt for Username,Password and //ip/share-name
