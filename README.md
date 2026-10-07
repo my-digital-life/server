@@ -17,7 +17,7 @@ Cross your fingers
 
 This script installs and configures a Samba file server for sharing files between Linux and Windows systems. It can create share mount remote Windows shares, and enable services automatically.  
 
-Both scripts add to fstab and auto mount shares to /mnt/media/`share name` and are mounted after script finishes and also survives reboots
+This script add's to fstab and auto mount shares to /mnt/media/`share name` and are mounted after script finishes and also survives reboots
 
 ### Download, Edit, and Run   
    
