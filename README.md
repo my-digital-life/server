@@ -94,20 +94,6 @@ chmod +x share-maker.sh
 ./share-maker.sh
 ```
 
-Old script
-
-```bash
-curl -sSL https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/share-maker2.sh | sudo bash
-```
-
-Alternatively, download, make executable, and run locally:
-
-```bash
-curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/share-maker2.sh
-chmod +x share-maker2.sh
-./share-maker2.sh
-```
-
 ---
 
 ## Kali-Style ZSH and Oh My Posh Setup
@@ -136,7 +122,6 @@ zsh2.sh will also ask if you want zsh for more users if present.
 
 ## Alias Installer
 
-**Script:** [new-zshrc.sh](https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/new-zshrc.sh)
 **Script:** [add-aliases.sh](https://github.com/my-digital-life/server/blob/main/add-aliases.sh)
 
 **Documentation:** [README-add-aliases.md](https://github.com/my-digital-life/server/blob/main/README-add-aliases.md)
@@ -144,13 +129,6 @@ zsh2.sh will also ask if you want zsh for more users if present.
 This script installs a collection of useful aliases and shell functions commonly used for system administration, package management, networking, troubleshooting, and day-to-day Linux usage. It is intended to save time and reduce repetitive typing.
 
 ### Download and Run
-
-```bash
-curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/new-zshrc.sh
-chmod +x new-zshrc.sh
-./new-zshrc.sh
-```
-
 
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/add-aliases.sh
