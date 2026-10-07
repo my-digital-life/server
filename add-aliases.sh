@@ -2,10 +2,11 @@
 
 echo ">>> Installing Kali-style aliases and functions..."
 
-# Remove old block if it exists
-sed -i '/# BEGIN KALI ALIASES/,/# END KALI ALIASES/d' ~/.zshrc
+# Remove old alias block if present
+sed -i '/# BEGIN KALI ALIASES/,/# END KALI ALIASES/d' "$HOME/.zshrc"
 
-cat >> ~/.zshrc << 'EOF'
+# Append new alias block
+cat >> "$HOME/.zshrc" << 'EOF'
 
 # BEGIN KALI ALIASES
 # ==========================================
@@ -103,16 +104,12 @@ extract() {
 # END KALI ALIASES
 EOF
 
-# Reload configuration for the current session
-source ~/.zshrc
-
 echo
 echo "=========================================="
-echo "INSTALLATION COMPLETE"
+echo "ALIASES INSTALLED"
 echo "=========================================="
 echo
 echo "Launching Kali-style ZSH..."
 sleep 2
 
-# Replace the current process with a new zsh session
 exec zsh
