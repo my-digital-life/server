@@ -14,9 +14,8 @@ Cross your fingers
 ## Mount Windows share Setup   
 
 **Script:** [mount-windows-share.sh](https://github.com/my-digital-life/server/blob/main/mount-windows-share.sh)
-**Script:** [winshare.sh](https://github.com/my-digital-life/server/blob/main/winshare.sh)
 
-These scripts installs and configures a Samba file server for sharing files between Linux and Windows systems. It can create share mount remote Windows shares, and enable services automatically.  
+This script installs and configures a Samba file server for sharing files between Linux and Windows systems. It can create share mount remote Windows shares, and enable services automatically.  
 
 Both scripts add to fstab and auto mount shares to /mnt/media/`share name` and are mounted after script finishes and also survives reboots
 
@@ -28,21 +27,12 @@ chmod +x mount-windows-share.sh
 ./mount-windows-share.sh
 ```
 
-This one is more automated you don't need to edit with nano, It will prompt for Username,Password and //ip/share-name
-The script contains example usernames, passwords, IP addresses, and share information. Before running the script, review and edit these values to match your environment. Failure to change the default credentials may result in authentication failures or security issues.
-
-```bash
-curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/winshare.sh
-chmod +x winshare.sh
-sudo ./winshare.sh
-```
-
 ### Important
 
 Before running the script, verify and update:
 
 * Windows username and password
-* Windows domain or workgroup # todo add workgroup to winshare.sh ?
+* Windows domain or workgroup
 * Windows share path
 * IP addresses
 * Shared folder names
