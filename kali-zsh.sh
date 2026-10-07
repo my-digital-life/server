@@ -1,13 +1,9 @@
 #!/bin/bash
 
 # ==========================================
-
 # GOLDEN IMAGE
-
 # KALI-LIKE ZSH + OH-MY-POSH INSTALLER
-
 # Ubuntu 24.04+
-
 # ==========================================
 
 set -e
@@ -16,13 +12,11 @@ echo ">>> Requesting sudo authentication..."
 sudo -v
 
 # Keep sudo alive
-
 while true; do
-sudo -n true
-sleep 60
-kill -0 "$$" || exit
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
 done 2>/dev/null &
-
 KEEPALIVE_PID=$!
 trap 'kill $KEEPALIVE_PID 2>/dev/null' EXIT
 
@@ -36,24 +30,19 @@ echo ">>> Verifying ZSH installation..."
 ZSH_PATH=$(command -v zsh)
 
 if [ -z "$ZSH_PATH" ]; then
-echo "ERROR: ZSH was not installed."
-exit 1
+    echo "ERROR: ZSH was not installed."
+    exit 1
 fi
 
 echo ">>> Installing Oh My Posh..."
 mkdir -p "$HOME/.local/bin"
 
-wget -q -O "$HOME/.local/bin/oh-my-posh" "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64"
+wget -q -O "$HOME/.local/bin/oh-my-posh" \
+    "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64"
 
 chmod +x "$HOME/.local/bin/oh-my-posh"
 
-if [ ! -x "$HOME/.local/bin/oh-my-posh" ]; then
-echo "ERROR: Oh My Posh installation failed."
-exit 1
-fi
-
 echo ">>> Installing plugins..."
-
 rm -rf "$HOME/.zsh-autosuggestions"
 rm -rf "$HOME/.zsh-syntax-highlighting"
 rm -rf "$HOME/.zsh-history-substring-search"
@@ -63,92 +52,76 @@ git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting "$HOME/
 git clone --depth 1 https://github.com/zsh-users/zsh-history-substring-search "$HOME/.zsh-history-substring-search"
 
 echo ">>> Downloading Kali theme..."
-
 mkdir -p "$HOME/.cache/oh-my-posh/themes"
 
-wget -q -O "$HOME/.cache/oh-my-posh/themes/kali.omp.json" "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/kali.omp.json"
-
-if [ ! -f "$HOME/.cache/oh-my-posh/themes/kali.omp.json" ]; then
-echo "ERROR: Kali theme download failed."
-exit 1
-fi
+wget -q -O "$HOME/.cache/oh-my-posh/themes/kali.omp.json" \
+    "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/kali.omp.json"
 
 echo ">>> Creating .zshrc..."
-
 cat > "$HOME/.zshrc" << 'EOF'
 export PATH="$HOME/.local/bin:$PATH"
 
-# HISTORY
-
+# --- ZSH HISTORY ---
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=50000
 export SAVEHIST=50000
 
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
-setopt HIST_VERIFY
-setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY
 setopt EXTENDED_HISTORY
+setopt HIST_VERIFY
 
-# SHELL OPTIONS
-
+# --- SHELL OPTIONS ---
 setopt AUTO_CD
 setopt AUTO_MENU
 setopt COMPLETE_IN_WORD
 setopt ALWAYS_TO_END
 
-# COMPLETION
-
+# --- COMPLETION ---
 autoload -Uz compinit
 compinit
-
 zmodload zsh/complist
 
 bindkey '^I' complete-word
-
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' list-colors ''
 
-# OH MY POSH
-
+# --- OH MY POSH ---
 eval "$($HOME/.local/bin/oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/kali.omp.json)"
 
-# PLUGINS
-
+# --- PLUGINS ---
 source ~/.zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh-history-substring-search/zsh-history-substring-search.zsh
 source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# FZF
-
+# --- FZF ---
 [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
 [ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
 
-# HISTORY SEARCH
-
+# --- HISTORY SEARCH KEYBINDINGS ---
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^[OA' history-substring-search-up
 bindkey '^[OB' history-substring-search-down
 
-# CTRL-R
-
+# --- CTRL-R ---
 bindkey '^R' fzf-history-widget
 EOF
 
-echo ">>> Configuring login shell..."
-
+echo ">>> Setting ZSH as the default login shell..."
 if ! grep -q "^$ZSH_PATH$" /etc/shells; then
-echo "$ZSH_PATH" | sudo tee -a /etc/shells >/dev/null
+    echo "$ZSH_PATH" | sudo tee -a /etc/shells >/dev/null
 fi
 
 sudo chsh -s "$ZSH_PATH" "$USER"
 
 echo
 echo "=========================================="
-echo "INSTALLATION COMPLETE"
+echo "INSTALLATION COMPLETE — ZSH IS NOW DEFAULT"
 echo "=========================================="
 echo
 echo "Launching Kali-style ZSH..."
