@@ -68,8 +68,8 @@ When executed, the script guides you through the following prompts:
 
 Run the script directly from GitHub using `curl`:    
 
-	
-: Windows may or may not see your new share Even if Windows sees your new share it may not be able to open it    
+**Tip:**	
+Windows may or may not see your new share Even if Windows sees your new share it may not be able to open it    
     Copy the link at the end when the script finishes and paste it into Windows File Explorer   
 EG:   
 === Setup Complete ===   
@@ -82,7 +82,7 @@ Samba Username:
   
 New Folders & Access URLs (Windows):   
 Windows is a pain in the ass, open file explorer   
- and type this into the address bar :   
+ and type this into the address bar	
   
     \\192.168.1.55\mount-wwin-share   
 ======================================   
