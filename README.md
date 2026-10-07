@@ -67,7 +67,7 @@ When executed, the script guides you through the following prompts:
 ## 🚀 One-Liner Quick Run   
 
 Run the script directly from GitHub using `curl`:    
-> [!TIP]   
+>  [!TIP]   
 > : Windows may or may not see your new share Even if Windows sees your new share it may not be able to open it    
       Copy the link at the end when the script finishes and paste it into Windows File Explorer   
 > EG:   
