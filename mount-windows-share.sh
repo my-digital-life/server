@@ -1,75 +1,249 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
-###############################################################################
-# EDIT THESE VARIABLES BEFORE RUNNING
-# Note Windows uses \\192.168.1.9\stuff
-# Linux uses //192.168.1.10/stuff
-# Remember to change the slashes
-# \  = backslash (Windows)
-# /  = forward slash (Linux)
-###############################################################################
+# --- 1. CHECK & ELEVATE TO ROOT IF NOT RUN AS SUDO ---
+if [ "$EUID" -ne 0 ]; then
+    echo "Root privileges are required to configure Samba."
+    echo "Prompting for sudo access..."
+    exec sudo "$0" "$@"
+    exit 1
+fi
 
-# Windows share path (example shown)
-WIN_PATH="//192.168.1.9/share"
+# --- LOGGING FUNCTION ---
+log_step() {
+    echo "=== $1 ==="
+}
 
-# Windows username
-WIN_USER="John"
+# --- DETECT EXISTING CONFIGURATION ---
+DETECTED_WORKGROUP="TOKEN"
+DETECTED_USER="user"
+FIRST_RUN=true
 
-# Windows password
-WIN_PASS="pass"
+if [ -f /etc/samba/smb.conf ]; then
+    # Try reading existing workgroup from smb.conf
+    EXISTING_WG=$(grep -i "^\s*workgroup\s*=" /etc/samba/smb.conf | head -n1 | awk -F'=' '{print $2}' | xargs || true)
+    if [ -n "${EXISTING_WG}" ]; then
+        DETECTED_WORKGROUP="${EXISTING_WG}"
+        FIRST_RUN=false
+    fi
 
-###############################################################################
-# DO NOT EDIT BELOW THIS LINE
-###############################################################################
+    # Try reading existing force user from smb.conf
+    EXISTING_USER=$(grep -i "^\s*force user\s*=" /etc/samba/smb.conf | head -n1 | awk -F'=' '{print $2}' | xargs || true)
+    if [ -n "${EXISTING_USER}" ]; then
+        DETECTED_USER="${EXISTING_USER}"
+    fi
+fi
 
-# Extract share name from WIN_PATH
-# Example: //192.168.1.11/vmware → vmware
-SHARE_NAME=$(basename "$WIN_PATH")
+# --- PROMPT FOR WORKGROUP / DOMAIN NAME ---
+while true; do
+    read -p "Enter Domain/Workgroup name [${DETECTED_WORKGROUP}]: " INPUT_WORKGROUP
+    WORKGROUP="${INPUT_WORKGROUP:-$DETECTED_WORKGROUP}"
 
-# Local mount point becomes /mnt/media/<share_name>
-MOUNT_POINT="/mnt/media/$SHARE_NAME"
+    if [ "$FIRST_RUN" = false ] && [ "${WORKGROUP}" != "${DETECTED_WORKGROUP}" ]; then
+        echo "⚠️ WARNING: Changing the Workgroup name on an existing setup is not recommended."
+        read -p "Are you sure you want to change it from '${DETECTED_WORKGROUP}' to '${WORKGROUP}'? (y/N): " CONFIRM
+        if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
+            continue
+        fi
+    fi
+    break
+done
 
-echo "=== Using mount point: $MOUNT_POINT ==="
+# --- PROMPT FOR USERNAME AND PASSWORD ---
+while true; do
+    read -p "Enter Samba Username [${DETECTED_USER}]: " INPUT_USER
+    SMB_USER="${INPUT_USER:-$DETECTED_USER}"
 
-echo "=== Installing required packages ==="
-apt update
-apt install -y cifs-utils
+    if [ "$FIRST_RUN" = false ] && [ "${SMB_USER}" != "${DETECTED_USER}" ]; then
+        echo "⚠️ WARNING: Changing the SMB Username on an existing setup can break existing client mounts."
+        read -p "Are you sure you want to change it from '${DETECTED_USER}' to '${SMB_USER}'? (y/N): " CONFIRM
+        if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
+            continue
+        fi
+    fi
+    break
+done
 
-echo "=== Creating mount point ==="
-mkdir -p "$MOUNT_POINT"
-chmod 777 "$MOUNT_POINT"
+# Check if user already exists in Linux database
+USER_EXISTS=false
+if id "${SMB_USER}" >/dev/null 2>&1; then
+    USER_EXISTS=true
+fi
 
-echo "=== Creating credentials file ==="
-mkdir -p /etc/samba
+if [ "$USER_EXISTS" = true ]; then
+    echo "⚠️ Note: User '${SMB_USER}' already exists."
+    read -p "Enter Samba Password (leave blank to retain the current password): " INPUT_PASS
+    SMB_PASS="${INPUT_PASS:-}"
+else
+    read -p "Enter Samba Password [user]: " INPUT_PASS
+    SMB_PASS="${INPUT_PASS:-user}"
+fi
 
-cat >/etc/samba/winshare.creds <<EOF
-username=$WIN_USER
-password=$WIN_PASS
+MEDIA_BASE="/mnt/media"
+
+# --- PROMPT FOR NUMBER OF FOLDERS & NAMES ---
+while true; do
+    read -p "How many shares/folders would you like to create? " SHARE_COUNT
+    if [[ "$SHARE_COUNT" =~ ^[1-9][0-9]*$ ]]; then
+        break
+    else
+        echo "Please enter a valid positive number."
+    fi
+done
+
+# Arrays to store folder names and absolute paths
+declare -a FOLDER_NAMES
+declare -a SHARE_PATHS
+
+for (( i=1; i<=SHARE_COUNT; i++ )); do
+    while true; do
+        read -p "Enter name for Share #${i}: " FOLDER_NAME
+        # Strip trailing/leading spaces
+        FOLDER_NAME=$(echo "$FOLDER_NAME" | xargs)
+        if [ -n "$FOLDER_NAME" ]; then
+            FOLDER_NAMES+=("$FOLDER_NAME")
+            SHARE_PATHS+=("${MEDIA_BASE}/${FOLDER_NAME}")
+            break
+        else
+            echo "Share name cannot be empty."
+        fi
+    done
+done
+
+log_step "Starting Samba Setup..."
+
+# --- UPDATE AND INSTALL PACKAGES ---
+log_step "Updating Package Lists (Quiet)..."
+apt-get update -qq || true
+
+log_step "Installing Required Packages (Silent)..."
+DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
+    samba \
+    samba-common-bin \
+    wsdd2 \
+    acl > /dev/null 2>&1
+
+# --- DIRECTORIES ---
+log_step "Creating Directories..."
+mkdir -p "${SHARE_PATHS[@]}"
+
+# --- USER MANAGEMENT ---
+log_step "Configuring Samba User '${SMB_USER}'..."
+
+if ! id "${SMB_USER}" >/dev/null 2>&1; then
+    useradd -m -s /bin/bash "${SMB_USER}"
+fi
+
+# Only update passwords if a new password was provided or if user is brand new
+if [ -n "${SMB_PASS}" ]; then
+    # Set Linux password
+    echo "${SMB_USER}:${SMB_PASS}" | chpasswd
+
+    # Set Samba password (add if new, update if existing)
+    if ! (echo "${SMB_PASS}"; echo "${SMB_PASS}") | smbpasswd -a -s "${SMB_USER}" >/dev/null 2>&1; then
+        (echo "${SMB_PASS}"; echo "${SMB_PASS}") | smbpasswd -s "${SMB_USER}" >/dev/null 2>&1
+    fi
+    smbpasswd -e "${SMB_USER}" >/dev/null 2>&1 || true
+else
+    echo "Keeping existing password configuration for user '${SMB_USER}'."
+fi
+
+# --- PERMISSIONS (777) ---
+log_step "Setting Permissions (777)..."
+chown -R "${SMB_USER}:${SMB_USER}" "${MEDIA_BASE}" || true
+
+for path in "${SHARE_PATHS[@]}"; do
+    chmod -R 777 "$path"
+    # Allow setfacl to fail silently in case the FS lacks ACL support
+    setfacl -R -m u::rwx,g::rwx,o::rwx "$path" || true
+    setfacl -R -d -m u::rwx,g::rwx,o::rwx "$path" || true
+done
+
+# --- SAMBA CONFIGURATION ---
+log_step "Writing Samba Configuration..."
+
+# Create smb.conf with [global] ONLY if it does not already exist
+if [ ! -f /etc/samba/smb.conf ] || [ "$FIRST_RUN" = true ]; then
+cat > /etc/samba/smb.conf << EOF
+[global]
+    workgroup = ${WORKGROUP}
+    server string = Ubuntu Samba Share
+    security = user
+    map to guest = Bad User
+    server min protocol = SMB2
+    dns proxy = no
+    log level = 1
+    passdb backend = tdbsam
 EOF
+fi
 
-chmod 600 /etc/samba/winshare.creds
+# Append share configurations dynamically without duplicating existing ones
+for i in "${!FOLDER_NAMES[@]}"; do
+    SHARE_NAME="${FOLDER_NAMES[$i]}"
 
-echo "=== Backing up fstab ==="
-cp /etc/fstab /etc/fstab.bak.$(date +%F-%H%M%S)
+    if grep -q "^\\[${SHARE_NAME}\\]" /etc/samba/smb.conf; then
+        echo "Note: Share [${SHARE_NAME}] already exists in /etc/samba/smb.conf. Skipping entry addition."
+    else
+        cat >> /etc/samba/smb.conf << EOF
 
-echo "=== Removing old fstab entries for this mount point ==="
-sed -i "\|$MOUNT_POINT|d" /etc/fstab
-
-echo "=== Adding new Windows share to fstab ==="
-cat >> /etc/fstab <<EOF
-
-$WIN_PATH $MOUNT_POINT cifs credentials=/etc/samba/winshare.creds,uid=1000,gid=1000,file_mode=0777,dir_mode=0777,noperm,_netdev 0 0
+[${SHARE_NAME}]
+    path = ${SHARE_PATHS[$i]}
+    browseable = yes
+    writable = yes
+    guest ok = yes
+    read only = no
+    force user = ${SMB_USER}
+    create mask = 0777
+    directory mask = 0777
+    force create mode = 0777
+    force directory mode = 0777
 EOF
+    fi
+done
 
-echo "=== Reloading systemd ==="
-systemctl daemon-reload
+# Validate config before restarting
+if ! testparm -s /etc/samba/smb.conf >/dev/null 2>&1; then
+    echo "Error: smb.conf failed validation. Check /etc/samba/smb.conf"
+    exit 1
+fi
 
-echo "=== Mounting Windows share ==="
-mount -a || { echo "Mount failed"; exit 1; }
+# --- SERVICE START ---
+log_step "Restarting Samba Services..."
+systemctl restart smbd nmbd || true
+systemctl enable smbd nmbd || true
+systemctl enable wsdd2 || true
+systemctl start wsdd2 || true
 
-echo
+# --- FIREWALL (best effort) ---
+ufw allow samba >/dev/null 2>&1 || true
+
+# --- NETWORK DETECTION ---
+DEFAULT_IF=$(ip -4 route show default 2>/dev/null | awk '{for(i=1;i<=NF;i++) if($i=="dev") print $(i+1)}' | head -n1)
+if [ -n "${DEFAULT_IF}" ]; then
+    LAN_IP=$(ip -4 -o addr show "${DEFAULT_IF}" 2>/dev/null | awk '{print $4}' | cut -d/ -f1 | head -n1)
+else
+    LAN_IP=$(ip -4 -o addr show up 2>/dev/null | grep -v ' lo ' | awk '{print $4}' | cut -d/ -f1 | head -n1)
+fi
+
+if [ -z "${LAN_IP}" ]; then
+    LAN_IP=$(hostname -I 2>/dev/null | awk '{print $1}')
+fi
+
+# --- SUMMARY OUTPUT ---
+log_step "Setup Complete"
 echo "======================================"
-echo "Windows Share Mounted Successfully"
-echo "  $WIN_PATH  -->  $MOUNT_POINT"
+echo "Workgroup / Domain:"
+echo "  ${WORKGROUP}"
+echo ""
+echo "Samba Username:"
+echo "  ${SMB_USER}"
+echo ""
+echo "New Folders & Access URLs (Windows):"
+echo "Windows is a pain in the ass, open file explorer "
+echo " and type this into the address bar :"
+echo ""
+for name in "${FOLDER_NAMES[@]}"; do
+    echo "    \\\\${LAN_IP}\\${name}  "
+echo ""    
+done
 echo "======================================"
