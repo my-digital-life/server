@@ -68,7 +68,7 @@ When executed, the script guides you through the following prompts:
 
 Run the script directly from GitHub using `curl`:    
 
-TIP  
+	
 : Windows may or may not see your new share Even if Windows sees your new share it may not be able to open it    
     Copy the link at the end when the script finishes and paste it into Windows File Explorer   
 EG:   
@@ -86,7 +86,6 @@ Windows is a pain in the ass, open file explorer
   
     \\192.168.1.55\mount-wwin-share   
 ======================================   
-
 
 Easy install:
 
