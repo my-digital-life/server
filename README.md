@@ -43,7 +43,7 @@ Before running the script, verify and update:
 
 An interactive, automated Bash script designed for Ubuntu Server 24.04 (and other Debian-based distributions) to instantly set up and configure customized Samba network shares.
 
-## 🌟 Key Features
+##  Key Features
 
 * **Auto-Elevation to Root:** Automatically prompts for `sudo` access if executed by a non-root user.
 * **Custom Domain/Workgroup Prompt:** Allows custom workgroup/domain naming with a default fallback to `WORKGROUP`.
@@ -53,7 +53,7 @@ An interactive, automated Bash script designed for Ubuntu Server 24.04 (and othe
 * **Full RW Permissions:** Automatically manages file permissions (`777`), directory ownership, and POSIX ACLs for seamless cross-network read/write access.
 * **Network & Firewall Auto-Detection:** Auto-detects local IPv4 addresses, opens standard Samba ports in `ufw`, and outputs clean Windows UNC file paths (`\\IP\share_name`).
 
-## 📋 Interactive Prompts Overview
+## Interactive Prompts Overview
 
 When executed, the script guides you through the following prompts:
 
@@ -64,7 +64,7 @@ When executed, the script guides you through the following prompts:
 4. **Number of Shares:** Specify how many folders you want to create (e.g., `3`).
 5. **Share Names:** Enter the desired folder names for each share (e.g., `Movies`, `TV`, `Documents`).
 
-## 🚀 One-Liner Quick Run   
+## One-Liner Quick Run   
 
 Run the script directly from GitHub using `curl`:    
 
