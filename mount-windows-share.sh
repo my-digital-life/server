@@ -17,7 +17,7 @@ WIN_PATH="//192.168.1.9/share"
 WIN_USER="rem"
 
 # Windows password
-WIN_PASS="nowcall911"
+WIN_PASS="pass"
 
 ###############################################################################
 # DO NOT EDIT BELOW THIS LINE
