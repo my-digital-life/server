@@ -15,7 +15,7 @@ Cross your fingers
 
 **Script:** [mount-windows-share.sh](https://github.com/my-digital-life/server/blob/main/mount-windows-share.sh)
 
-This script installs and configures a Samba file server for sharing files between Linux and Windows systems. It can create share mount remote Windows shares, and enable services automatically.  
+This script installs and configures a Samba file server for sharing files between Linux and Windows systems. You must edit the file before running
 
 This script add's to fstab and auto mount shares to /mnt/media/`share name` and are mounted after script finishes and also survives reboots
 
@@ -23,6 +23,7 @@ This script add's to fstab and auto mount shares to /mnt/media/`share name` and 
    
 ```bash
 curl -O https://raw.githubusercontent.com/my-digital-life/server/refs/heads/main/mount-windows-share.sh
+nano mount-windows-share.sh
 chmod +x mount-windows-share.sh
 ./mount-windows-share.sh
 ```
